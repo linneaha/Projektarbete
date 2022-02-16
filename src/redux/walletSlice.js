@@ -14,6 +14,6 @@ const walletSlice = createSlice({
       },
     ],
   },
-  reducer:null
+  reducers:null
 });
 export default walletSlice.reducer;
