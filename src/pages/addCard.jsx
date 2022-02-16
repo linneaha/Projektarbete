@@ -1,7 +1,5 @@
 const AddCard = () => {
-  return (
-    <div>addCard</div>
-  )
-}
+  return <div>addCard</div>;
+};
 
-export {AddCard}
+export { AddCard };
