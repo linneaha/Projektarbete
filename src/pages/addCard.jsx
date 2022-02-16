@@ -1,7 +1,7 @@
-const addCard = () => {
+const AddCard = () => {
   return (
     <div>addCard</div>
   )
 }
 
-export default addCard
+export {AddCard}
