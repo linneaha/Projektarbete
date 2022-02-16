@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <div>
-      <p>home</p>
+      <h1>E-Wallet</h1>
+      <p>Active card</p>
       <Link to="/addcard">
         <button>Add a new card</button>
       </Link>

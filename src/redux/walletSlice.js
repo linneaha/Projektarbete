@@ -7,13 +7,18 @@ const walletSlice = createSlice({
       {
         vendor: "Amex",
         cardNumber: 0,
-        cardholder: "Jane Doe",
-        expireMonth: 1,
-        expireYear: 22,
-        CCV: 123,
+        cardHolder: "Jane Doe",
+        expire: "22/2",
+        cvc: 123,
       },
     ],
   },
-  reducers:null
+  reducers: {
+    addCards: (state, action) => {
+      state.cards = [...state.cards, action.payload];
+      console.log(state.cards);
+    },
+  },
 });
 export default walletSlice.reducer;
+export const { addCards } = walletSlice.actions;
