@@ -25,3 +25,16 @@ body {
   border: 1px solid black;
 }
 
+#container {
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  height: 200px;
+  width: 350px;
+  border: 1px solid black;
+}
+a {
+  text-decoration: none;
+}
