@@ -6,9 +6,9 @@ const walletSlice = createSlice({
     cards: [
       {
         vendor: "Amex",
-        cardNumber: 0,
+        cardNumber: 1234567891234567,
         cardHolder: "Jane Doe",
-        expire: "22/2",
+        expire: "12/3",
         cvc: 123,
       },
     ],

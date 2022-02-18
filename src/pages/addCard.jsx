@@ -1,11 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { addCards } from "../redux/walletSlice";
-import { Link } from "react-router-dom";
+import { Link,useHistory } from "react-router-dom";
 import { useState } from "react";
 
 const AddCard = () => {
   let dispatch = useDispatch();
-
+  const history = useHistory();
+  
   const [cardNumber, setCardNumber] = useState("");
   const [cardHolder, setCardHolder] = useState("");
   const [cardExpire, setCardExpire] = useState("");
@@ -21,6 +22,7 @@ const AddCard = () => {
       cvc: cardCvc,
     };
     dispatch(addCards(newCard));
+    history.push("/")
   };
 
   return (
@@ -88,9 +90,9 @@ const AddCard = () => {
         </div>
         {/* Submit */}
         <div>
-          <Link to="/">
+          {/* <Link to="/"> */}
             <button onClick={addCard}>Add card</button>
-          </Link>
+          {/* </Link> */}
         </div>
       </div>
     </div>
@@ -106,3 +108,4 @@ export { AddCard };
 // let expire = document.querySelector("#expireInput").value;
 // let cvc = document.querySelector("#cvcInput").value;
 // let vendor = document.querySelector("#vendorSelect").value;
+//  <Link to="/">
