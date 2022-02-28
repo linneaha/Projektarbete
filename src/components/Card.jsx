@@ -2,7 +2,7 @@
 
 const Card = ({ cardNumber, cardHolder, expire, cvc, vendor }) => {
   return (
-    <div id="container">
+    
       <div className="card">
         <p>{cardNumber}</p>
         <p>{cardHolder}</p>
@@ -10,7 +10,7 @@ const Card = ({ cardNumber, cardHolder, expire, cvc, vendor }) => {
         <p>{cvc}</p>
         <p>{vendor}</p>
       </div>
-    </div>
+
   );
 };
 

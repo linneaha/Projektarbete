@@ -20,6 +20,7 @@ const AddCard = () => {
       cardHolder: cardHolder,
       expire: cardExpire,
       cvc: cardCvc,
+      active: false
     };
     dispatch(addCards(newCard));
     history.push("/")
