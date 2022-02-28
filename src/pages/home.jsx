@@ -1,21 +1,48 @@
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { Card } from "../components/MyCards";
+import { useDispatch, useSelector } from "react-redux";
+import { MyCards } from "../components/MyCards";
+import { handleCards, removeCard } from "../redux/walletSlice";
 
 const Home = () => {
-  const { cards } = useSelector((state) => state.wallet);
+  let dispatch = useDispatch();
+  const { activeCards } = useSelector((state) => state.wallet);
+  const { inactiveCards } = useSelector((state) => state.wallet);
 
+  var timer;
   return (
     <div>
       <h1>E-Wallet</h1>
       <p>Active card</p>
-      {cards.map((card, i) => {
-        return <Card {...card} key={i} />;
-      })}
+      <div id="container">
+        <div>
+          {activeCards.map((card, i) => {
+            return <MyCards {...card} key={i} />;
+          })}
+        </div>
+        {inactiveCards.map((card, i) => (
+          <div
+            key={i}
+            onClick={(e) => {
+              clearTimeout(timer);
+
+              if (e.detail === 1) {
+                timer = setTimeout(() => {
+                  dispatch(handleCards(card));
+                }, 200);
+              } else if (e.detail === 2) {
+                dispatch(removeCard(card));
+              }
+            }}
+          >
+            <MyCards {...card} />
+          </div>
+        ))}
+      </div>
+
       <Link
         to="/addcard"
         onClick={(e) => {
-          if (cards.length >= 4) {
+          if (inactiveCards.length >= 3) {
             document.querySelector("#error").innerHTML =
               "You have to many cards!";
             e.preventDefault();

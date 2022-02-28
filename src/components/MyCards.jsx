@@ -1,7 +1,7 @@
 import Cards from "react-credit-cards";
 import "react-credit-cards/es/styles-compiled.css";
 
-const Card = ({ number, name, expiry, cvc }) => {
+const MyCards = ({ number, name, expiry, cvc }) => {
   return (
     <div className="App">
       <Cards number={number} name={name} expiry={expiry} cvc={cvc} />
@@ -9,4 +9,4 @@ const Card = ({ number, name, expiry, cvc }) => {
   );
 };
 
-export { Card };
+export { MyCards };

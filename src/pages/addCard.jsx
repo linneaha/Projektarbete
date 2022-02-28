@@ -85,12 +85,3 @@ const AddCard = () => {
 };
 
 export { AddCard };
-
-// .value eller states? Eller globala states med redux?
-
-// let cardNumber = document.querySelector("#cardNumberInput").value;
-// let cardHolder = document.querySelector("#cardHolderInput").value;
-// let expire = document.querySelector("#expireInput").value;
-// let cvc = document.querySelector("#cvcInput").value;
-// let vendor = document.querySelector("#vendorSelect").value;
-//  <Link to="/">
