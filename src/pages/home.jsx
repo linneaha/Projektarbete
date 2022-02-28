@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Card } from "../components/Card";
+import { Card } from "../components/MyCards";
 
 const Home = () => {
   const { cards } = useSelector((state) => state.wallet);
@@ -16,12 +16,13 @@ const Home = () => {
         to="/addcard"
         onClick={(e) => {
           if (cards.length >= 4) {
-            document.querySelector("#error").innerHTML = "You have to many cards!"
+            document.querySelector("#error").innerHTML =
+              "You have to many cards!";
             e.preventDefault();
           }
         }}
       >
-      <p id="error"></p>
+        <p id="error"></p>
         <button>Add a new card</button>
       </Link>
     </div>
