@@ -1,7 +1,6 @@
-import "./App.css";
 import { Switch, Route } from "react-router-dom";
-import { Home } from "./pages/Home";
-import { AddCard } from "./pages/AddCard";
+import { Home } from "./pages/home";
+import { AddCard } from "./pages/addCard";
 
 function App() {
   return (
