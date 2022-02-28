@@ -1,112 +1,87 @@
-import { useDispatch, useSelector } from "react-redux";
+import "./App.css";
+import { useDispatch } from "react-redux";
 import { addCards } from "../redux/walletSlice";
-import { Link,useHistory } from "react-router-dom";
-import { useState } from "react";
+import { useHistory } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
+import Cards from "react-credit-cards";
+import "react-credit-cards/es/styles-compiled.css";
 
 const AddCard = () => {
   let dispatch = useDispatch();
   const history = useHistory();
-  
-  const [cardNumber, setCardNumber] = useState("");
-  const [cardHolder, setCardHolder] = useState("");
-  const [cardExpire, setCardExpire] = useState("");
-  const [cardCvc, setCardCvc] = useState("");
-  const [cardVendor, setCardVendor] = useState("");
+
+  const [number, setNumber] = useState("");
+  const [name, setName] = useState("");
+  const [expiry, setExpiry] = useState("");
+  const [cvc, setCvc] = useState("");
+  const [focus, setFocus] = useState("");
 
   const addCard = () => {
     let newCard = {
-      vendor: cardVendor,
-      cardNumber: cardNumber,
-      cardHolder: cardHolder,
-      expire: cardExpire,
-      cvc: cardCvc,
-      active: false
+      number: number,
+      name: name,
+      expiry: expiry,
+      cvc: cvc
     };
     dispatch(addCards(newCard));
-    history.push("/")
+    history.push("/");
   };
 
+  useEffect(() => {
+    ref.current.focus();
+  }, []);
+
+  const ref = useRef(null);
   return (
-    <div>
-      <h1>Add a new card</h1>
-      <p>New card</p>
-      <div id="placeholderCard">
-        <p>{cardNumber}</p>
-        <p>{cardHolder}</p>
-        <span>{cardExpire}</span>
-        <p>{cardCvc}</p>
-        <p>{cardVendor}</p>
-      </div>
-      <div>
-        {/* Number */}
-        <div>
-          <label htmlFor="cardNumberInput">Card number</label>
-          <input
-            type="tel"
-            id="cardNumberInput"
-            maxLength={16}
-            onChange={(e) => setCardNumber(e.target.value)}
-          />
-        </div>
-        {/* Holder */}
-        <div>
-          <label htmlFor="cardHolderInput">Cardholder name</label>
-          <input
-            type="text"
-            id="cardHolderInput"
-            onChange={(e) => setCardHolder(e.target.value)}
-          />
-        </div>
-        <div>
-          {/* Expire */}
-          <label htmlFor="expireInput">Valid thru</label>
-          <input
-            type="text"
-            id="expireInput"
-            placeholder="MM/YY"
-            onChange={(e) => setCardExpire(e.target.value)}
-          />
-        </div>
-        {/* CCV */}
-        <div>
-          <label htmlFor="cvcInput">CVV/CVC</label>
-          <input
-            type="number"
-            id="cvcInput"
-            onChange={(e) => setCardCvc(e.target.value)}
-          />
-        </div>
-        {/* Vendor */}
-        <div>
-          <label htmlFor="vendorSelect">Vendor</label>
-          <select
-            id="vendorSelect"
-            onChange={(e) => setCardVendor(e.target.value)}
-          >
-            <option value="amex">Amex</option>
-            <option value="visa">Visa</option>
-            <option value="mastercard">Mastercard</option>
-            <option value="klarna">Klarna</option>
-          </select>
-        </div>
-        {/* Submit */}
-        <div>
-          {/* <Link to="/"> */}
-            <button onClick={addCard}>Add card</button>
-          {/* </Link> */}
-        </div>
-      </div>
+    <div className="App">
+      <Cards
+        number={number}
+        name={name}
+        expiry={expiry}
+        cvc={cvc}
+        focused={focus}
+      />
+
+      {/* kortet renderas med hjälp av useEffect*/}
+
+      <form>
+        <input
+          type="text"
+          name="number"
+          placeholder="Card Number"
+          value={number}
+          onChange={(e) => setNumber(e.target.value)}
+          onFocus={(e) => setFocus(e.target.name)}
+          ref={ref}
+        />
+        <input
+          type="text"
+          name="name"
+          placeholder="Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          onFocus={(e) => setFocus(e.target.name)}
+        />
+        <input
+          type="text"
+          name="expiry"
+          placeholder="MM/YY"
+          value={expiry}
+          onChange={(e) => setExpiry(e.target.value)}
+          onFocus={(e) => setFocus(e.target.name)}
+        />
+        <input
+          type="tel"
+          name="cvc"
+          placeholder="CVC"
+          value={cvc}
+          onChange={(e) => setCvc(e.target.value)}
+          onFocus={(e) => setFocus(e.target.name)}
+        />
+        <button onClick={addCard}>Add card</button>
+      </form>
     </div>
   );
 };
 
 export { AddCard };
-
-// .value eller states? Eller globala states med redux?
-
-// let cardNumber = document.querySelector("#cardNumberInput").value;
-// let cardHolder = document.querySelector("#cardHolderInput").value;
-// let expire = document.querySelector("#expireInput").value;
-// let cvc = document.querySelector("#cvcInput").value;
-// let vendor = document.querySelector("#vendorSelect").value;
-//  <Link to="/">
