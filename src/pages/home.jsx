@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { MyCards } from "../components/MyCards";
+import { Card } from "../components/MyCards";
 import { handleCards, removeCard } from "../redux/walletSlice";
 
 const Home = () => {
@@ -16,7 +16,7 @@ const Home = () => {
       <div id="container">
         <div>
           {activeCards.map((card, i) => {
-            return <MyCards {...card} key={i} />;
+            return <Card {...card} key={i} />;
           })}
         </div>
         {inactiveCards.map((card, i) => (
@@ -34,7 +34,7 @@ const Home = () => {
               }
             }}
           >
-            <MyCards {...card} />
+            <Card {...card} />
           </div>
         ))}
       </div>

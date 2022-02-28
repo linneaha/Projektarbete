@@ -44,7 +44,7 @@ const AddCard = () => {
 
       {/* kortet renderas med hjälp av useEffect*/}
 
-      <form>
+      <form onSubmit={addCard}>
         <input
           type="text"
           name="number"
@@ -78,7 +78,7 @@ const AddCard = () => {
           onChange={(e) => setCvc(e.target.value)}
           onFocus={(e) => setFocus(e.target.name)}
         />
-        <button onClick={addCard}>Add card</button>
+        <input type="submit" value="Add Card"/>
       </form>
     </div>
   );

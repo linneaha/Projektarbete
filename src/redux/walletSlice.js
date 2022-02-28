@@ -6,11 +6,11 @@ const walletSlice = createSlice({
     activeCards: [
       {
         vendor: "Amex",
-        cardNumber:
+        number:
           (Math.random() + " ").substring(2, 10) +
           (Math.random() + " ").substring(2, 10),
-        cardHolder: "Jane Doe".toUpperCase(),
-        expire: "12/03",
+        name: "Jane Doe".toUpperCase(),
+        expiry: "12/03",
         cvc: Math.floor(Math.random() * (999 - 100 + 1) + 100),
       },
     ],
@@ -42,13 +42,13 @@ const walletSlice = createSlice({
       state.activeCards = [action.payload];
 
       state.inactiveCards = state.inactiveCards.filter(
-        (card) => card.cardNumber !== action.payload.cardNumber
+        (card) => card.number !== action.payload.number
       );
       console.log(state.inactiveCards);
     },
     removeCard: (state, action) => {
       state.inactiveCards = state.inactiveCards.filter(
-        (card) => card.cardNumber !== action.payload.cardNumber
+        (card) => card.number !== action.payload.number
       );
     },
   },
