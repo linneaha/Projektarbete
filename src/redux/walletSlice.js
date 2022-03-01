@@ -21,30 +21,17 @@ const walletSlice = createSlice({
       state.inactiveCards = [...state.inactiveCards, action.payload];
     },
     handleCards: (state, action) => {
-      state.inactiveCards.splice(
-        state.inactiveCards.indexOf(action.payload),
-        0,
-        state.activeCards[0]
-      );
+      const index = state.inactiveCards
+        .map((card) => card.number)
+        .indexOf(action.payload.number);
 
-      // Nedan kod funkar likadant som ovan och får samma bugg
-      // state.inactiveCards = [
-      //   ...state.inactiveCards.slice(
-      //     0,
-      //     state.inactiveCards.indexOf(action.payload)
-      //   ),
-      //   state.activeCards[0],
-      //   ...state.inactiveCards.slice(
-      //     state.inactiveCards.indexOf(action.payload)
-      //   ),
-      // ];
+      state.inactiveCards.splice(index, 0, state.activeCards[0]);
 
       state.activeCards = [action.payload];
 
       state.inactiveCards = state.inactiveCards.filter(
         (card) => card.number !== action.payload.number
       );
-      console.log(state.inactiveCards);
     },
     removeCard: (state, action) => {
       state.inactiveCards = state.inactiveCards.filter(
