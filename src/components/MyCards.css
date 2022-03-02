@@ -20,15 +20,6 @@ html,
 body,
 .main-container {
   height: 100%;
-  
-}
-
-html {
-  font-size: 62, 5%;
-}
-body {
-  font-size: 1.6rem;
-  background: #e2d8fd;
 }
 
 a {
@@ -45,7 +36,7 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
-  width:100%;
+  width: 100%;
 }
 
 /* card */
@@ -55,7 +46,6 @@ ul {
   height: 20rem;
   margin: 0 auto;
   perspective: 600px;
-  
 }
 
 .card {

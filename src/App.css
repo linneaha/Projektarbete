@@ -1,12 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
-.App {
-  text-align: center;
-}
+
 .App {
   font-family: sans-serif;
   text-align: center;
@@ -34,12 +32,6 @@ input {
   color: white;
 }
 
-#placeholderCard {
-  height: 200px;
-  width: 350px;
-  border: 1px solid black;
-}
-
 #container {
   display: flex;
   justify-content: center;
@@ -48,17 +40,13 @@ input {
   width: 100%;
 }
 
-.card {
-  height: 200px;
-  width: 350px;
-}
 a {
   text-decoration: none;
 }
 
-#container > :first-child {
-  margin-bottom: 50px;
-}
+/* #container > :first-child {
+  
+} */
 
 #container > :nth-child(3) {
   margin-top: -235px;

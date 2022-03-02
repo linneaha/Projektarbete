@@ -2,9 +2,8 @@ import "../App.css";
 import { useDispatch } from "react-redux";
 import { addCards } from "../redux/walletSlice";
 import { useHistory } from "react-router-dom";
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import Card from "../components/MyCards";
-// import "react-credit-cards/es/styles-compiled.css";
 
 const AddCard = () => {
   let dispatch = useDispatch();
@@ -17,21 +16,20 @@ const AddCard = () => {
   const [focus, setFocus] = useState("");
 
   const addCard = () => {
-    let newCard = {
-      number: number,
-      name: name,
-      expiry: expiry,
-      cvc: cvc,
-    };
-    dispatch(addCards(newCard));
-    history.push("/");
+    if (number.toString().length != 16) {
+      document.querySelector("#cardNumberInput").style.border = "1px solid red";
+    } else {
+      let newCard = {
+        number: number,
+        name: name,
+        expiry: expiry,
+        cvc: cvc,
+      };
+      dispatch(addCards(newCard));
+      history.push("/");
+    }
   };
 
-  useEffect(() => {
-    ref.current.focus();
-  }, []);
-
-  const ref = useRef(null);
   return (
     <div className="App">
       <Card
@@ -40,20 +38,20 @@ const AddCard = () => {
         expiry={expiry}
         cvc={cvc}
         focused={focus}
-      /> 
-
-      {/* kortet renderas med hjälp av useEffect*/}
+      />
 
       <form>
         <input
           type="number"
           name="number"
+          id="cardNumberInput"
           placeholder="Card Number"
           maxLength={16}
           value={number}
-          onChange={(e) => {setNumber(e.target.value)} }
+          onChange={(e) => {
+            setNumber(e.target.value);
+          }}
           onFocus={(e) => setFocus(e.target.name)}
-          ref={ref}
         />
         <input
           type="text"
