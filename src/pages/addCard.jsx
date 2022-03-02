@@ -1,10 +1,10 @@
-import "./App.css";
+import "../App.css";
 import { useDispatch } from "react-redux";
 import { addCards } from "../redux/walletSlice";
 import { useHistory } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
-import Cards from "react-credit-cards";
-import "react-credit-cards/es/styles-compiled.css";
+import Card from "../components/MyCards";
+// import "react-credit-cards/es/styles-compiled.css";
 
 const AddCard = () => {
   let dispatch = useDispatch();
@@ -34,7 +34,7 @@ const AddCard = () => {
   const ref = useRef(null);
   return (
     <div className="App">
-      <Cards
+      <Card
         number={number}
         name={name}
         expiry={expiry}
