@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import Card from "../components/MyCards";
 
-const AddCard = () => {
+const AddCard = (props) => {
   let dispatch = useDispatch();
   const history = useHistory();
 
@@ -14,7 +14,7 @@ const AddCard = () => {
   const [expiry, setExpiry] = useState("");
   const [cvc, setCvc] = useState("");
   const [focus, setFocus] = useState("");
-  const [ bank,setBank ] = useState("");
+  const [bank,setBank ] = useState("");
 
   const addCard = () => {
     if (number.toString().length != 16) {
@@ -39,6 +39,7 @@ const AddCard = () => {
         expiry={expiry}
         cvc={cvc}
         focused={focus}
+        bank={bank}
       />
 
       <form> 
@@ -81,7 +82,7 @@ const AddCard = () => {
 
   <select required onChange={(e) => {
   const selectedBank= e.target.value;
-  setBank(selectedBank)
+  setBank(selectedBank);
   }}>
     <option value="" disabled selected hidden>Vendor</option>
     <option value="handelsbanken">Handelsbanken</option>
@@ -90,7 +91,7 @@ const AddCard = () => {
   </select>
 
 
-        <input type="submit" value="Add Card"/>
+{/* '        <input type="submit" value="Add Card"/> */}
         <button type="button" onClick={addCard}>
 
           Add card

@@ -9,27 +9,48 @@
 /* Variables */
 
 :root {
-  --white: #fafafa;
+  --white: #0033ff;
   --violet: #e2d8fd;
   --dark-blue: #16044a;
   --gray1: #e1e1e1;
   --gray2: #6a6a6a;
 }
 
+html,
+body,
+.main-container {
+  height: 100%;
+}
+
+html {
+  font-size: 62, 5%;
+}
+body {
+  font-size: 1.6rem;
+  background: #e2d8fd;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
 /* main content */
 
 .main-container {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  width: 100%;
 }
 
 /* card */
 .scene {
-  width: 100%;
+  width: 90%;
   max-width: 35rem;
-  height: 300px;
+  height: 20rem;
   margin: 0 auto;
   perspective: 600px;
 }
@@ -43,8 +64,17 @@
   margin: 0 auto;
   border-radius: 20px;
   box-shadow: -15px 20px 20px rgba(22, 4, 74, 0.15);
-  background-image: linear-gradient(65deg, #dbeac6, #9cc069, #497d59);
+  /* background-image: linear-gradient(43deg, #dce775, #9ccc65, #4caf50, #00897b); */
 }
+
+.card-hb {
+  background: #69aadf;
+}
+
+.card-seb {
+  background: red;
+}
+
 
 .card:hover {
   cursor: pointer;
@@ -64,32 +94,42 @@
 }
 
 .card__logo {
-  width: 3rem;
-  height: 3rem;
-  margin-top: 0.1rem;
+  width: 100px;
+  height: 20px;
+  margin-top: 23px;
   position: absolute;
   right: 30px;
 }
-.card__bank {
-  font-size: 15px;
-  font-weight: 500;
-  font-style: italic;
+.chip {
+  height: 3rem;
+  margin-top: 10px;
   position: absolute;
-  text-align: left;
-  top: 18px;
-  color: #e1e1e1;
+  left: 30px;
+}
+.master-card {
+  height: 4rem;
+  margin-top: 10px;
+  position: absolute;
+  left: 130px;
+  bottom: 22px;
 }
 
-.card__logo .card__bank {
+.NFC {
+  height: 3rem;
+  margin-top: 10px;
   position: absolute;
-  right: 40px;
-  top: 25px;
+  left: 62px;
+  color: #fff;
+}
+.card__logo .chip {
+  position: absolute;
 }
 .card__number {
   display: flex;
   justify-content: space-between;
   text-shadow: 0 2px 1px #0005;
-  margin-top: 28%;
+
+  margin-top: 72px;
 }
 
 .number-group,
@@ -111,21 +151,23 @@
 .card__expiration {
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
+  margin-top: 44px;
 }
 
 .card__holder__title,
 .card__expiration__title {
   font-family: "Segoe UI", Tahoma, Geneva, Verfana, sans-serif;
+  text-align: left;
   color: var(--white);
   opacity: 0.7;
-  font-size: 10px;
+  font-size: 13px;
   margin-bottom: 0.2rem;
 }
 .card__holder__name,
 .card__expiration__date {
   text-transform: uppercase;
-  font-size: 20px;
+  font-size: 13px;
+  text-shadow: 0 2px 1px #0005;
 }
 
 /* Card back */
