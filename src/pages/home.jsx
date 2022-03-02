@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Card } from "../components/MyCards";
+import Card from "../components/MyCards";
 import { handleCards, removeCard } from "../redux/walletSlice";
 
 const Home = () => {

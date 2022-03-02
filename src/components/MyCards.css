@@ -1,0 +1,203 @@
+/* Base STYLES */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Variables */
+
+:root {
+  --white: #fafafa;
+  --violet: #e2d8fd;
+  --dark-blue: #16044a;
+  --gray1: #e1e1e1;
+  --gray2: #6a6a6a;
+}
+
+html,
+body,
+.main-container {
+  height: 100%;
+  
+}
+
+html {
+  font-size: 62, 5%;
+}
+body {
+  font-size: 1.6rem;
+  background: #e2d8fd;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+/* main content */
+
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width:100%;
+}
+
+/* card */
+.scene {
+  width: 90%;
+  max-width: 35rem;
+  height: 20rem;
+  margin: 0 auto;
+  perspective: 600px;
+  
+}
+
+.card {
+  width: 320px;
+  height: 190px;
+  position: relative;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+  margin: 0 auto;
+  border-radius: 20px;
+  box-shadow: -15px 20px 20px rgba(22, 4, 74, 0.15);
+  background-image: linear-gradient(65deg, #dbeac6, #9cc069, #497d59);
+}
+
+.card:hover {
+  cursor: pointer;
+}
+
+.card__front,
+.card__back {
+  width: 320px;
+  height: 190px;
+  position: absolute;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+.card__front {
+  padding: 0 2rem;
+}
+
+.card__logo {
+  width: 3rem;
+  height: 3rem;
+  margin-top: 0.1rem;
+  position: absolute;
+  right: 30px;
+}
+.card__bank {
+  font-size: 15px;
+  font-weight: 500;
+  font-style: italic;
+  position: absolute;
+  text-align: left;
+  top: 18px;
+  color: #e1e1e1;
+}
+
+.card__logo .card__bank {
+  position: absolute;
+  right: 40px;
+  top: 25px;
+}
+.card__number {
+  display: flex;
+  justify-content: space-between;
+  text-shadow: 0 2px 1px #0005;
+
+  margin-top: 28%;
+}
+
+.number-group,
+.card__holder__name,
+.card__expiration__date {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 20px;
+  text-shadow: 0 1.2px var(--gray2);
+  color: var(--white);
+  letter-spacing: 1px;
+}
+
+.card__details {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card__holder,
+.card__expiration {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.card__holder__title,
+.card__expiration__title {
+  font-family: "Segoe UI", Tahoma, Geneva, Verfana, sans-serif;
+  color: var(--white);
+  opacity: 0.7;
+  font-size: 10px;
+  margin-bottom: 0.2rem;
+}
+.card__holder__name,
+.card__expiration__date {
+  text-transform: uppercase;
+  font-size: 20px;
+}
+
+/* Card back */
+
+.card__back {
+  padding-top: 2rem;
+  transform: rotateY(180deg);
+}
+
+.card.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.card__stripe {
+  height: 2rem;
+  background: var(--gray1);
+}
+
+.card__signature {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 2rem;
+  background: var(--white);
+  margin: 15px 20px;
+  padding-right: 1rem;
+  font-size: 15px;
+}
+.card__cvv,
+.card__cvv-number,
+.card__info {
+  font-family: "Open Sans", sans-serif;
+  font-size: 15px;
+}
+
+.card__cvv,
+.card__cvv-number {
+  color: var(--dark-blue);
+  padding-right: 10px;
+}
+.card__cvv {
+  margin-right: 0.1rem;
+  font-size: 15px;
+}
+
+.card__info {
+  font-size: 0.5rem;
+  padding: 11px 20px 1px 20px;
+  color: var(--white);
+}
