@@ -14,6 +14,7 @@ const AddCard = () => {
   const [expiry, setExpiry] = useState("");
   const [cvc, setCvc] = useState("");
   const [focus, setFocus] = useState("");
+  const [ bank,setBank ] = useState("");
 
   const addCard = () => {
     if (number.toString().length != 16) {
@@ -42,11 +43,10 @@ const AddCard = () => {
 
       <form> 
         <input
-          type="number"
+          type="text"
           name="number"
           id="cardNumberInput"
           placeholder="Card Number"
-          maxLength={16}
           value={number}
           onChange={(e) => {
             setNumber(e.target.value);
@@ -62,7 +62,7 @@ const AddCard = () => {
           onFocus={(e) => setFocus(e.target.name)}
         />
         <input
-          type="number"
+          type="text"
           name="expiry"
           placeholder="MM/YY"
           value={expiry}
@@ -70,16 +70,33 @@ const AddCard = () => {
           onFocus={(e) => setFocus(e.target.name)}
         />
         <input
-          type="number"
+          type="tel"
           name="cvc"
           placeholder="CVC"
           value={cvc}
           onChange={(e) => setCvc(e.target.value)}
           onFocus={(e) => setFocus(e.target.name)}
         />
+
+
+  <select required onChange={(e) => {
+  const selectedBank= e.target.value;
+  setBank(selectedBank)
+  }}>
+    <option value="" disabled selected hidden>Vendor</option>
+    <option value="handelsbanken">Handelsbanken</option>
+    <option value="sparbanken">Sparbanken</option>
+    <option value="seb">SEB</option>
+  </select>
+
+
+        <input type="submit" value="Add Card"/>
         <button type="button" onClick={addCard}>
+
           Add card
+
         </button>
+        {bank}
       </form>
     </div>
   );
