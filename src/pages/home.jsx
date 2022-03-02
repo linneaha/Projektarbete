@@ -13,38 +13,42 @@ const Home = () => {
     <div>
       <h1>E-Wallet</h1>
       <p>Active card</p>
-      <div id="container">
-        <div>
-          {activeCards.map((card, i) => {
-            return <Card {...card} key={i} />;
-          })}
-        </div>
-        {inactiveCards.map((card, i) => (
-          <div
-            key={i}
-            onClick={(e) => {
-              clearTimeout(timer);
-
-              if (e.detail === 1) {
-                timer = setTimeout(() => {
-                  dispatch(handleCards(card));
-                }, 200);
-              } else if (e.detail === 2) {
-                dispatch(removeCard(card));
-              }
-            }}
-          >
-            <Card {...card} />
+      <div id="wrapper">
+        <div id="container">
+          <div>
+            {activeCards.map((card, i) => {
+              return <Card {...card} key={i} />;
+            })}
           </div>
-        ))}
-      </div>
+          {inactiveCards.map((card, i) => (
+            <div
+              key={i}
+              onClick={(e) => {
+                clearTimeout(timer);
 
+                if (e.detail === 1) {
+                  timer = setTimeout(() => {
+                    dispatch(handleCards(card));
+                  }, 200);
+                } else if (e.detail === 2) {
+                  dispatch(removeCard(card));
+                }
+              }}
+            >
+              <Card {...card} />
+            </div>
+          ))}
+        </div>
+      </div>
       <Link
         to="/addcard"
         onClick={(e) => {
           if (inactiveCards.length >= 3) {
             document.querySelector("#error").innerHTML =
-              "You have to many cards!";
+              "You have to many cards! Please remove one to add another";
+            setTimeout(() => {
+              document.querySelector("#error").innerHTML = "";
+            }, 3000);
             e.preventDefault();
           }
         }}
