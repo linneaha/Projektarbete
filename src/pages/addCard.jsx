@@ -2,9 +2,8 @@ import "../App.css";
 import { useDispatch } from "react-redux";
 import { addCards } from "../redux/walletSlice";
 import { useHistory } from "react-router-dom";
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import Card from "../components/MyCards";
-
 
 const AddCard = () => {
   let dispatch = useDispatch();
@@ -18,32 +17,20 @@ const AddCard = () => {
   const [ bank,setBank ] = useState("");
 
   const addCard = () => {
-    let newCard = {
-      number: number,
-      name: name,
-      expiry: expiry,
-      cvc: cvc
-    };
-    dispatch(addCards(newCard));
-    history.push("/");
+    if (number.toString().length != 16) {
+      document.querySelector("#cardNumberInput").style.border = "1px solid red";
+    } else {
+      let newCard = {
+        number: number,
+        name: name,
+        expiry: expiry,
+        cvc: cvc,
+      };
+      dispatch(addCards(newCard));
+      history.push("/");
+    }
   };
 
-  const selectBank = (element) => {
-    alert(element.options[element.selectedIndex].value);
-    alert(element.options[element.selectedIndex].text);
-    
-    const a = element.options[element.selectedIndex].value;
-    
-    if(a == "saab") {
-        document.body.style.backgroundColor = "red";
-    }
- }
-
-  useEffect(() => {
-    ref.current.focus();
-  }, []);
-
-  const ref = useRef(null);
   return (
     <div className="App">
       <Card
@@ -54,17 +41,17 @@ const AddCard = () => {
         focused={focus}
       />
 
-      {/* kortet renderas med hjälp av useEffect*/}
-
-      <form onSubmit={addCard}>
+      <form> 
         <input
           type="text"
           name="number"
+          id="cardNumberInput"
           placeholder="Card Number"
           value={number}
-          onChange={(e) => setNumber(e.target.value)}
+          onChange={(e) => {
+            setNumber(e.target.value);
+          }}
           onFocus={(e) => setFocus(e.target.name)}
-          ref={ref}
         />
         <input
           type="text"
@@ -104,6 +91,11 @@ const AddCard = () => {
 
 
         <input type="submit" value="Add Card"/>
+        <button type="button" onClick={addCard}>
+
+          Add card
+
+        </button>
         {bank}
       </form>
     </div>

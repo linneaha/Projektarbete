@@ -1,15 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: "Poppins", sans-serif;
+  text-transform: uppercase;
 }
+
 .App {
   text-align: center;
-}
-.App {
-  font-family: sans-serif;
-  text-align: center;
+  margin-top: 40px;
 }
 
 select, input {
@@ -25,25 +24,6 @@ select, input {
   border-radius: 8px;
 }
 
-
-
-.App-header {
-  background-color: #282c34;
-  min-height: 10vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-#placeholderCard {
-  height: 200px;
-  width: 350px;
-  border: 1px solid black;
-}
-
 #container {
   display: flex;
   justify-content: center;
@@ -52,35 +32,52 @@ select, input {
   width: 100%;
 }
 
-.card {
-  height: 200px;
-  width: 350px;
-}
 a {
   text-decoration: none;
 }
-
-#container > :first-child {
-  margin-bottom: 50px;
+h1 {
+  font-weight: 1200;
 }
 
+#active {
+  color: slategray;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+/* #container > :first-child {
+  
+} */
+
 #container > :nth-child(3) {
-  margin-top: -235px;
+  margin-top: -215px;
 }
 
 #container > :nth-child(4) {
-  margin-top: -235px;
+  margin-top: -215px;
 }
 
 #container > :nth-child(2):hover {
   margin-right: -40px;
+  transition: 0.5s;
 }
 
 #container > :nth-child(3):hover {
   margin-right: -40px;
+  transition: 0.5s;
 }
 
 #container > :nth-child(4):hover {
   margin-right: -40px;
+  transition: 0.5s;
+}
+#container > :nth-child(2):not(:hover) {
+  transition: 0.5s;
+}
+#container > :nth-child(3):not(:hover) {
+  transition: 0.5s;
+}
+#container > :nth-child(4):not(:hover) {
+  transition: 0.5s;
 }
 

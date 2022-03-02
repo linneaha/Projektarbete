@@ -12,7 +12,7 @@ const Home = () => {
   return (
     <div>
       <h1>E-Wallet</h1>
-      <p>Active card</p>
+      <p id="active">Active card</p>
       <div id="wrapper">
         <div id="container">
           <div>
@@ -40,20 +40,20 @@ const Home = () => {
           ))}
         </div>
       </div>
+      <p id="error"></p>
       <Link
         to="/addcard"
         onClick={(e) => {
           if (inactiveCards.length >= 3) {
-            document.querySelector("#error").innerHTML =
+            document.querySelector("#error").textContent =
               "You have to many cards! Please remove one to add another";
             setTimeout(() => {
-              document.querySelector("#error").innerHTML = "";
+              document.querySelector("#error").textContent = "";
             }, 3000);
             e.preventDefault();
           }
         }}
       >
-        <p id="error"></p>
         <button>Add a new card</button>
       </Link>
     </div>

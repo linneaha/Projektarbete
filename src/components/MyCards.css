@@ -16,46 +16,22 @@
   --gray2: #6a6a6a;
 }
 
-html,
-body,
-.main-container {
-  height: 100%;
-  
-}
-
-html {
-  font-size: 62, 5%;
-}
-body {
-  font-size: 1.6rem;
-  background: #e2d8fd;
-}
-
-a {
-  text-decoration: none;
-}
-
-ul {
-  list-style: none;
-}
-
 /* main content */
 
 .main-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  width:100%;
+  width: 100%;
 }
 
 /* card */
 .scene {
-  width: 90%;
+  width: 100%;
   max-width: 35rem;
-  height: 20rem;
+  height: 300px;
   margin: 0 auto;
   perspective: 600px;
-  
 }
 
 .card {
@@ -113,7 +89,6 @@ ul {
   display: flex;
   justify-content: space-between;
   text-shadow: 0 2px 1px #0005;
-
   margin-top: 28%;
 }
 
