@@ -40,7 +40,7 @@ const AddCard = () => {
         focused={focus}
       />
 
-      <form>
+      <form> 
         <input
           type="number"
           name="number"

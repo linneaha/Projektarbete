@@ -26,6 +26,7 @@ const Card = ({ number, name, expiry, cvc }) => {
             <div className="number-group number-group--2">7239</div>
             <div className="number-group number-group--3">1586</div>
           </div>
+          {number}
           <div className="card__details">
             <div className="card__holder">
               <span className="card__holder__title">Card Holder</span>
