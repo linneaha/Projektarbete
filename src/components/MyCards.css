@@ -43,8 +43,9 @@ ul {
 
 .main-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
+  width:100%;
 }
 
 /* card */
@@ -54,6 +55,7 @@ ul {
   height: 20rem;
   margin: 0 auto;
   perspective: 600px;
+  
 }
 
 .card {

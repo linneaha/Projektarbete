@@ -9,7 +9,7 @@ const Card = () => {
     });
   }, []);
   return (
-    <main className="main-container">
+    
       <div className="scene">
         {/* Card */}
         <div className="card">
@@ -56,7 +56,7 @@ const Card = () => {
           </div>
         </div>
       </div>
-    </main>
+    
   );
 };
 

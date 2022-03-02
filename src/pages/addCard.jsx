@@ -21,7 +21,7 @@ const AddCard = () => {
       number: number,
       name: name,
       expiry: expiry,
-      cvc: cvc
+      cvc: cvc,
     };
     dispatch(addCards(newCard));
     history.push("/");
@@ -40,17 +40,18 @@ const AddCard = () => {
         expiry={expiry}
         cvc={cvc}
         focused={focus}
-      />
+      /> 
 
       {/* kortet renderas med hjälp av useEffect*/}
 
-      <form onSubmit={addCard}>
+      <form>
         <input
-          type="text"
+          type="number"
           name="number"
           placeholder="Card Number"
+          maxLength={16}
           value={number}
-          onChange={(e) => setNumber(e.target.value)}
+          onChange={(e) => {setNumber(e.target.value)} }
           onFocus={(e) => setFocus(e.target.name)}
           ref={ref}
         />
@@ -63,7 +64,7 @@ const AddCard = () => {
           onFocus={(e) => setFocus(e.target.name)}
         />
         <input
-          type="text"
+          type="number"
           name="expiry"
           placeholder="MM/YY"
           value={expiry}
@@ -71,14 +72,16 @@ const AddCard = () => {
           onFocus={(e) => setFocus(e.target.name)}
         />
         <input
-          type="tel"
+          type="number"
           name="cvc"
           placeholder="CVC"
           value={cvc}
           onChange={(e) => setCvc(e.target.value)}
           onFocus={(e) => setFocus(e.target.name)}
         />
-        <input type="submit" value="Add Card"/>
+        <button type="button" onClick={addCard}>
+          Add card
+        </button>
       </form>
     </div>
   );
