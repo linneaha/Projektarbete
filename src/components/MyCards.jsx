@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import "./MyCards.css";
 
 const Card = ({ name, expiry, cvc, bank }) => {
-  useEffect(() => {
+ useEffect(() => {
     const card = document.querySelector(".card");
     card.addEventListener("click", () => {
       card.classList.toggle("is-flipped");
@@ -12,7 +12,7 @@ const Card = ({ name, expiry, cvc, bank }) => {
     <main className="main-container">
       <div className="scene">
         {/* Card */}
-        <div className="card card-hb">
+        <div className={`card ${bank}`}>
           {/* card front */}
           <div className="card__front">
             <img

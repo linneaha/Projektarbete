@@ -15,6 +15,7 @@ const AddCard = () => {
   const [cvc, setCvc] = useState("");
   const [focus, setFocus] = useState("");
   const [bank, setBank] = useState("");
+  console.log(bank) 
 
   const addCard = () => {
     if (number.toString().length != 16) {
@@ -25,6 +26,7 @@ const AddCard = () => {
         name: name,
         expiry: expiry,
         cvc: cvc,
+        bank: bank,
       };
       dispatch(addCards(newCard));
       history.push("/");
