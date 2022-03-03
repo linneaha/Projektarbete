@@ -15,7 +15,6 @@ const AddCard = () => {
   const [cvc, setCvc] = useState("");
   const [focus, setFocus] = useState("");
   const [bank, setBank] = useState("");
-  console.log(bank) 
 
   const addCard = () => {
     if (number.toString().length != 16) {
