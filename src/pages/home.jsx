@@ -39,8 +39,8 @@ const Home = () => {
             </div>
           ))}
         </div>
+        <p id="error"></p>
       </div>
-      <p id="error"></p>
       <Link
         to="/addcard"
         onClick={(e) => {

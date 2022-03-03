@@ -5,7 +5,7 @@ const walletSlice = createSlice({
   initialState: {
     activeCards: [
       {
-        vendor: "Amex",
+        vendor: "Handelsbanken",
         number:
           (Math.random() + " ").substring(2, 10) +
           (Math.random() + " ").substring(2, 10),

@@ -38,7 +38,7 @@ html {
 .scene {
   width: 100%;
   max-width: 35rem;
-  height: 15rem;
+  height: 190px;
   margin: 0 auto;
   perspective: 600px;
 }
