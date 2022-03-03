@@ -17,7 +17,7 @@ const AddCard = () => {
   const [bank, setBank] = useState("");
 
   const addCard = () => {
-    if (number.toString().length != 16) {
+    if (number.toString().length !== 16) {
       document.querySelector("#cardNumberInput").style.border = "2px solid red";
     } else {
       let newCard = {
