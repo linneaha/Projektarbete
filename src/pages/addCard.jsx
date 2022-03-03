@@ -18,7 +18,7 @@ const AddCard = () => {
 
   const addCard = () => {
     if (number.toString().length != 16) {
-      document.querySelector("#cardNumberInput").style.border = "1px solid red";
+      document.querySelector("#cardNumberInput").style.border = "2px solid red";
     } else {
       let newCard = {
         number: number,
@@ -45,57 +45,59 @@ const AddCard = () => {
       />
 
       <form>
-        <input
-          type="text"
-          name="number"
-          id="cardNumberInput"
-          placeholder="Card Number"
-          value={number}
-          onChange={(e) => {
-            setNumber(e.target.value);
-          }}
-          onFocus={(e) => setFocus(e.target.name)}
-        />
-        <input
-          type="text"
-          name="name"
-          placeholder="Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          onFocus={(e) => setFocus(e.target.name)}
-        />
-        <input
-          type="text"
-          name="expiry"
-          placeholder="MM/YY"
-          value={expiry}
-          onChange={(e) => setExpiry(e.target.value)}
-          onFocus={(e) => setFocus(e.target.name)}
-        />
-        <input
-          type="tel"
-          name="cvc"
-          placeholder="CVC"
-          value={cvc}
-          onChange={(e) => setCvc(e.target.value)}
-          onFocus={(e) => setFocus(e.target.name)}
-        />
+        <div id="inputWrapper">
+          <input
+            type="number"
+            name="number"
+            id="cardNumberInput"
+            placeholder="Card Number"
+            value={number}
+            onChange={(e) => {
+              setNumber(e.target.value);
+            }}
+            onFocus={(e) => setFocus(e.target.name)}
+          />
+          <input
+            type="text"
+            name="name"
+            placeholder="Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            onFocus={(e) => setFocus(e.target.name)}
+          />
+          <input
+            type="text"
+            name="expiry"
+            placeholder="MM/YY"
+            value={expiry}
+            onChange={(e) => setExpiry(e.target.value)}
+            onFocus={(e) => setFocus(e.target.name)}
+          />
+          <input
+            type="tel"
+            name="cvc"
+            placeholder="CVC"
+            value={cvc}
+            onChange={(e) => setCvc(e.target.value)}
+            onFocus={(e) => setFocus(e.target.name)}
+          />
 
-        <select
-          required
-          onChange={(e) => {
-            const selectedBank = e.target.value;
-            setBank(selectedBank);
-          }}
-          defaultValue={"Vendor"}
-        >
-          <option value="Vendor" disabled hidden>
-            Vendor
-          </option>
-          <option value="handelsbanken">Handelsbanken</option>
-          <option value="sparbanken">Sparbanken</option>
-          <option value="seb">SEB</option>
-        </select>
+          <select
+            required
+            onChange={(e) => {
+              const selectedBank = e.target.value;
+              setBank(selectedBank);
+            }}
+            defaultValue={"Vendor"}
+          >
+            <option value="Vendor" disabled hidden>
+              Vendor
+            </option>
+            <option value="handelsbanken">Handelsbanken</option>
+            <option value="sparbanken">Sparbanken</option>
+            <option value="seb">SEB</option>
+          </select>
+        </div>
         <button id="addNewCardBtn" type="button" onClick={addCard}>
           Add card
         </button>
