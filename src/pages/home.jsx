@@ -54,7 +54,7 @@ const Home = () => {
           }
         }}
       >
-        <button>Add a new card</button>
+        <button id="newCardBtn">Add a new card</button>
       </Link>
     </div>
   );
