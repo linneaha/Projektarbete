@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import Card from "../components/MyCards";
 
-const AddCard = (props) => {
+const AddCard = () => {
   let dispatch = useDispatch();
   const history = useHistory();
 
@@ -33,6 +33,8 @@ const AddCard = (props) => {
 
   return (
     <div className="App">
+      {/* <h1>Adding new card</h1> */}
+      <p id="active">new card</p>
       <Card
         number={number}
         name={name}
@@ -84,7 +86,8 @@ const AddCard = (props) => {
           onChange={(e) => {
             const selectedBank = e.target.value;
             setBank(selectedBank);
-          }} defaultValue={"Vendor"} 
+          }}
+          defaultValue={"Vendor"}
         >
           <option value="Vendor" disabled hidden>
             Vendor
@@ -93,7 +96,7 @@ const AddCard = (props) => {
           <option value="sparbanken">Sparbanken</option>
           <option value="seb">SEB</option>
         </select>
-        <button type="button" onClick={addCard}>
+        <button id="addNewCardBtn" type="button" onClick={addCard}>
           Add card
         </button>
         {bank}

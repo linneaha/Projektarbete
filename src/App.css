@@ -8,10 +8,11 @@ body {
 
 .App {
   text-align: center;
-  margin-top: 40px;
+  margin-top: 20px;
 }
 
-select, input {
+select,
+input {
   width: 320px;
   height: 50px;
   display: block;
@@ -22,6 +23,7 @@ select, input {
   background-color: #fff;
   border: 1px solid #ced4da;
   border-radius: 8px;
+  text-transform: uppercase;
 }
 
 #container {
@@ -35,6 +37,7 @@ select, input {
 a {
   text-decoration: none;
 }
+
 h1 {
   font-weight: 1200;
 }
@@ -45,16 +48,17 @@ h1 {
   margin-bottom: 5px;
   font-size: 14px;
 }
-/* #container > :first-child {
-  
-} */
+
+#container > :nth-child(2) {
+  margin-top: 20px;
+}
 
 #container > :nth-child(3) {
-  margin-top: -215px;
+  margin-top: -160px;
 }
 
 #container > :nth-child(4) {
-  margin-top: -215px;
+  margin-top: -160px;
 }
 
 #container > :nth-child(2):hover {
@@ -71,13 +75,51 @@ h1 {
   margin-right: -40px;
   transition: 0.5s;
 }
+
 #container > :nth-child(2):not(:hover) {
   transition: 0.5s;
 }
+
 #container > :nth-child(3):not(:hover) {
   transition: 0.5s;
 }
+
 #container > :nth-child(4):not(:hover) {
   transition: 0.5s;
 }
+button {
+  background: #000000;
+  border: 2px solid #000000;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Poppins", sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+  width: 85%;
+  font-size: 16px;
+  line-height: 16px;
+  min-height: 50px;
+  outline: 0;
+  padding: 12px 14px;
+  text-align: center;
+  text-rendering: geometricprecision;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+}
 
+button:hover,
+button:active {
+  background-color: initial;
+  background-position: 0 0;
+  color: #000000;
+}
+
+button:active {
+  opacity: .5;
+}
