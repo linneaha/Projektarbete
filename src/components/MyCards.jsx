@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import "./MyCards.css";
 
-const Card = ({ name, expiry, cvc, bank }) => {
+const Card = ({ name, expiryMonth,expiryYear, cvc, bank }) => {
  useEffect(() => {
     const card = document.querySelector(".card");
     card.addEventListener("click", () => {
@@ -49,7 +49,7 @@ const Card = ({ name, expiry, cvc, bank }) => {
 
               <div className="card__expiration">
                 <span className="card__expiration__title">valid thru</span>
-                <span className="card__expiration__date">{expiry}</span>
+                <span className="card__expiration__date">{expiryMonth}/{expiryYear}</span>
               </div>
             </div>
           </div>
