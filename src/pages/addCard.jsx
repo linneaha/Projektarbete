@@ -25,6 +25,7 @@ const AddCard = () => {
         name: name,
         expiry: expiry,
         cvc: cvc,
+        bank: bank,
       };
       dispatch(addCards(newCard));
       history.push("/");
