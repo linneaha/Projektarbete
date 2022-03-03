@@ -95,6 +95,7 @@ const AddCard = () => {
               Vendor
             </option>
             <option value="handelsbanken">Handelsbanken</option>
+            <option value="nordea">NORDEA</option>
             <option value="sparbanken">Sparbanken</option>
             <option value="seb">SEB</option>
           </select>
