@@ -86,8 +86,20 @@ const AddCard = () => {
           <select
             required
             onChange={(e) => {
-              const selectedBank = e.target.value;
-              setBank(selectedBank);
+              if (e.target.value === "swedbank") {
+                document.querySelector(".card__logo").src =
+                  "https://vandergragt.eu/images/swedbank.png";
+              } else if (e.target.value === "icabank") {
+                document.querySelector(".card__logo").src =
+                  "https://vandergragt.eu/images/ICA.png";
+              } else if (e.target.value === "nordea") {
+                document.querySelector(".card__logo").src =
+                  "https://vandergragt.eu/images/nordea.png";
+              } else if (e.target.value === "handelsbanken") {
+                document.querySelector(".card__logo").src =
+                  "https://vandergragt.eu/images/handelsbbanken.png";
+              }
+              setBank(e.target.value);
             }}
             defaultValue={"Vendor"}
           >
@@ -95,8 +107,9 @@ const AddCard = () => {
               Vendor
             </option>
             <option value="handelsbanken">Handelsbanken</option>
-            <option value="sparbanken">Sparbanken</option>
-            <option value="seb">SEB</option>
+            <option value="swedbank">swedbank</option>
+            <option value="icabank">icabank</option>
+            <option value="nordea">nordea</option>
           </select>
         </div>
         <button id="addNewCardBtn" type="button" onClick={addCard}>
