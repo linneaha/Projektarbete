@@ -57,7 +57,7 @@ html {
 }
 
 .handelsbanken {
-  background: #69aadf;
+  background-image: linear-gradient(43deg, #dce775, #9ccc65, #4caf50, #00897b);
 }
 
 .swedbank {
