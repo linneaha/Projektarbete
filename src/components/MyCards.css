@@ -57,7 +57,17 @@ html {
 }
 
 .handelsbanken {
-  background: #69aadf;
+  background: #017ab2;
+}
+.nordea {
+  background-image: linear-gradient(
+    30deg,
+    #000033,
+    #4a148c,
+    #311b92,
+    #000033,
+    #000000
+  );
 }
 
 .swedbank {
@@ -70,7 +80,6 @@ html {
     #f26822
   );
 }
-
 .icabank {
   background-image: linear-gradient(43deg, #424949, #d0d3d4, #909497, #5f6a6a);
 }
@@ -83,7 +92,13 @@ html {
     #000033,
     #000000
   );
+
 }
+
+.seb {
+  background-image: linear-gradient(43deg, #dce775, #9ccc65, #4caf50, #00897b);
+}
+
 .card:hover {
   cursor: pointer;
 }

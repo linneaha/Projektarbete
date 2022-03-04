@@ -11,7 +11,8 @@ const AddCard = () => {
 
   const [number, setNumber] = useState("");
   const [name, setName] = useState("");
-  const [expiry, setExpiry] = useState("");
+  const [expiryMonth, setExpiryMonth] = useState("");
+  const [expiryYear, setExpiryYear] = useState("");
   const [cvc, setCvc] = useState("");
   const [focus, setFocus] = useState("");
   const [bank, setBank] = useState("");
@@ -23,7 +24,8 @@ const AddCard = () => {
       let newCard = {
         number: number,
         name: name,
-        expiry: expiry,
+        expiryMonth: expiryMonth,
+        expiryYear: expiryYear,
         cvc: cvc,
         bank: bank,
       };
@@ -39,7 +41,8 @@ const AddCard = () => {
       <Card
         number={number}
         name={name}
-        expiry={expiry}
+        expiryMonth={expiryMonth}
+        expiryYear={expiryYear}
         cvc={cvc}
         focused={focus}
         bank={bank}
@@ -66,14 +69,38 @@ const AddCard = () => {
             onChange={(e) => setName(e.target.value)}
             onFocus={(e) => setFocus(e.target.name)}
           />
-          <input
-            type="text"
-            name="expiry"
-            placeholder="MM/YY"
-            value={expiry}
-            onChange={(e) => setExpiry(e.target.value)}
-            onFocus={(e) => setFocus(e.target.name)}
-          />
+
+<input
+          autoComplete="off"
+          className="exp"
+          id="month"
+          maxLength="2"
+          pattern="[0-9]*"
+          inputMode="numerical"
+          placeholder="MM"
+          type="text"
+          data-pattern-validate
+          onChange={(e) => {
+            const selectedMonth = e.target.value;
+            setExpiryMonth(selectedMonth);
+          }}
+        />
+        <input
+          autoComplete="off"
+          className="exp"
+          id="year"
+          maxLength="2"
+          pattern="[0-9]*"
+          inputMode="numerical"
+          placeholder="YY"
+          type="text"
+          data-pattern-validate
+          onChange={(e) => {
+            const selectedYear = e.target.value;
+            setExpiryYear(selectedYear);
+          }}
+          
+        />
           <input
             type="tel"
             name="cvc"

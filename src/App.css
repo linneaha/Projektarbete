@@ -143,3 +143,11 @@ button:active {
   opacity: 0.5;
 }
 
+.exp {
+  display: inline;
+  width: 140px;
+  margin: 20px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  align-items: stretch;
+}
