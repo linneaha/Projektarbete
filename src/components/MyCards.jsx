@@ -1,13 +1,14 @@
 import { useEffect } from "react";
 import "./MyCards.css";
 
-const Card = ({ name, expiry, cvc, bank }) => {
- useEffect(() => {
+const Card = ({ name, number, expiry, cvc, bank }) => {
+  useEffect(() => {
     const card = document.querySelector(".card");
     card.addEventListener("click", () => {
       card.classList.toggle("is-flipped");
     });
   }, []);
+  
   return (
     <main className="main-container">
       <div className="scene">
@@ -36,10 +37,7 @@ const Card = ({ name, expiry, cvc, bank }) => {
               alt=""
             />
             <div className="card__number number">
-              <div className="number-group number-group--0">4011</div>
-              <div className="number-group number-group--1">2016</div>
-              <div className="number-group number-group--2">7239</div>
-              <div className="number-group number-group--3">1586</div>
+              <div className="number-group number-group--0">{number}</div>
             </div>
             <div className="card__details">
               <div className="card__holder">

@@ -17,7 +17,7 @@ const AddCard = () => {
   const [bank, setBank] = useState("");
 
   const addCard = () => {
-    if (number.toString().length !== 16) {
+    if (number.toString().length !== 19) {
       document.querySelector("#cardNumberInput").style.border = "2px solid red";
     } else {
       let newCard = {
@@ -25,10 +25,25 @@ const AddCard = () => {
         name: name,
         expiry: expiry,
         cvc: cvc,
-        bank: bank,
       };
       dispatch(addCards(newCard));
       history.push("/");
+    }
+  };
+
+  const validateNumber = (e) => {
+    let regexNumber =
+      e.target.value
+        .replace(/\D+/g, "")
+        .replace(/\D/g, "")
+        .match(/.{1,4}/g) || [];
+    setNumber(regexNumber.join(" ").slice(0, 19));
+  };
+
+  const flipCard = () => {
+    const card = document.querySelector(".card");
+    if (card.classList.contains("is-flipped")) {
+      card.classList.remove("is-flipped");
     }
   };
 
@@ -47,42 +62,49 @@ const AddCard = () => {
 
       <form>
         <div id="inputWrapper">
+          <label htmlFor="cardNumberInput">Card Number</label>
           <input
-            type="number"
+            type="text"
             name="number"
             id="cardNumberInput"
-            placeholder="Card Number"
             value={number}
-            onChange={(e) => {
-              setNumber(e.target.value);
-            }}
-            onFocus={(e) => setFocus(e.target.name)}
+            onChange={validateNumber}
+            onFocus={flipCard}
           />
+
+          <label htmlFor="cardHolderInput">Card holder</label>
           <input
             type="text"
             name="name"
-            placeholder="Name"
+            id="cardHolderInput"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            onFocus={(e) => setFocus(e.target.name)}
+            onFocus={flipCard}
           />
+
+          <label htmlFor="expiryInput">Valid thru</label>
           <input
-            type="text"
+            type="number"
             name="expiry"
+            id="expiryInput"
             placeholder="MM/YY"
             value={expiry}
             onChange={(e) => setExpiry(e.target.value)}
-            onFocus={(e) => setFocus(e.target.name)}
+            onFocus={flipCard}
           />
+          <label htmlFor="cvcInput">CVC</label>
           <input
             type="tel"
             name="cvc"
-            placeholder="CVC"
+            id="cvcInput"
             value={cvc}
-            onChange={(e) => setCvc(e.target.value)}
-            onFocus={(e) => setFocus(e.target.name)}
+            onChange={(e) => setCvc(e.target.value.slice(0, 3))}
+            onFocus={() => {
+              const card = document.querySelector(".card");
+              card.classList.toggle("is-flipped");
+            }}
           />
-
+          <label htmlFor="selectBank">Vendor</label>
           <select
             required
             onChange={(e) => {
@@ -90,6 +112,8 @@ const AddCard = () => {
               setBank(selectedBank);
             }}
             defaultValue={"Vendor"}
+            id="selectBank"
+            onFocus={flipCard}
           >
             <option value="Vendor" disabled hidden>
               Vendor
@@ -99,10 +123,9 @@ const AddCard = () => {
             <option value="seb">SEB</option>
           </select>
         </div>
-        <button id="addNewCardBtn" type="button" onClick={addCard}>
+        <button type="button" onClick={addCard}>
           Add card
         </button>
-        {bank}
       </form>
     </div>
   );
