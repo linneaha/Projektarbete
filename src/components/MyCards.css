@@ -70,7 +70,7 @@ html {
   );
 }
 
-.sparbanken {
+.swedbank {
   background: linear-gradient(
     40deg,
     #f26822,
@@ -80,11 +80,24 @@ html {
     #f26822
   );
 }
+.icabank {
+  background-image: linear-gradient(43deg, #424949, #d0d3d4, #909497, #5f6a6a);
+}
+.nordea {
+  background-image: linear-gradient(
+    30deg,
+    #000033,
+    #4a148c,
+    #311b92,
+    #000033,
+    #000000
+  );
+
+}
 
 .seb {
   background-image: linear-gradient(43deg, #dce775, #9ccc65, #4caf50, #00897b);
 }
-
 
 .card:hover {
   cursor: pointer;
@@ -177,7 +190,6 @@ html {
 .card__expiration__date {
   text-transform: uppercase;
   font-size: 15px;
-  
 }
 
 /* Card back */

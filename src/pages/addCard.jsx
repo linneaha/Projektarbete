@@ -11,7 +11,8 @@ const AddCard = () => {
 
   const [number, setNumber] = useState("");
   const [name, setName] = useState("");
-  const [expiry, setExpiry] = useState("");
+  const [expiryMonth, setExpiryMonth] = useState("");
+  const [expiryYear, setExpiryYear] = useState("");
   const [cvc, setCvc] = useState("");
   const [focus, setFocus] = useState("");
   const [bank, setBank] = useState("");
@@ -23,7 +24,8 @@ const AddCard = () => {
       let newCard = {
         number: number,
         name: name,
-        expiry: expiry,
+        expiryMonth: expiryMonth,
+        expiryYear: expiryYear,
         cvc: cvc,
       };
       dispatch(addCards(newCard));
@@ -54,7 +56,8 @@ const AddCard = () => {
       <Card
         number={number}
         name={name}
-        expiry={expiry}
+        expiryMonth={expiryMonth}
+        expiryYear={expiryYear}
         cvc={cvc}
         focused={focus}
         bank={bank}
@@ -81,20 +84,41 @@ const AddCard = () => {
             onChange={(e) => setName(e.target.value)}
             onFocus={flipCard}
           />
-
-          <label htmlFor="expiryInput">Valid thru</label>
+          <label htmlFor="month">month</label>
+          <label htmlFor="year">year</label>
           <input
-            type="number"
-            name="expiry"
-            id="expiryInput"
-            placeholder="MM/YY"
-            value={expiry}
-            onChange={(e) => setExpiry(e.target.value)}
-            onFocus={flipCard}
+            autoComplete="off"
+            className="exp"
+            id="month"
+            maxLength="2"
+            pattern="[0-9]*"
+            inputMode="numerical"
+            placeholder="MM"
+            type="text"
+            data-pattern-validate
+            onChange={(e) => {
+              const selectedMonth = e.target.value;
+              setExpiryMonth(selectedMonth);
+            }}
+          />
+          <input
+            autoComplete="off"
+            className="exp"
+            id="year"
+            maxLength="2"
+            pattern="[0-9]*"
+            inputMode="numerical"
+            placeholder="YY"
+            type="text"
+            data-pattern-validate
+            onChange={(e) => {
+              const selectedYear = e.target.value;
+              setExpiryYear(selectedYear);
+            }}
           />
           <label htmlFor="cvcInput">CVC</label>
           <input
-            type="tel"
+            type="number"
             name="cvc"
             id="cvcInput"
             value={cvc}
@@ -108,8 +132,20 @@ const AddCard = () => {
           <select
             required
             onChange={(e) => {
-              const selectedBank = e.target.value;
-              setBank(selectedBank);
+              if (e.target.value === "swedbank") {
+                document.querySelector(".card__logo").src =
+                  "https://vandergragt.eu/images/swedbank.png";
+              } else if (e.target.value === "icabank") {
+                document.querySelector(".card__logo").src =
+                  "https://vandergragt.eu/images/ICA.png";
+              } else if (e.target.value === "nordea") {
+                document.querySelector(".card__logo").src =
+                  "https://vandergragt.eu/images/nordea.png";
+              } else if (e.target.value === "handelsbanken") {
+                document.querySelector(".card__logo").src =
+                  "https://vandergragt.eu/images/handelsbbanken.png";
+              }
+              setBank(e.target.value);
             }}
             defaultValue={"Vendor"}
             id="selectBank"
@@ -119,8 +155,9 @@ const AddCard = () => {
               Vendor
             </option>
             <option value="handelsbanken">Handelsbanken</option>
-            <option value="sparbanken">Sparbanken</option>
-            <option value="seb">SEB</option>
+            <option value="swedbank">swedbank</option>
+            <option value="icabank">icabank</option>
+            <option value="nordea">nordea</option>
           </select>
         </div>
         <button type="button" onClick={addCard}>
