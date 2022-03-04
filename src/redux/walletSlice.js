@@ -6,9 +6,7 @@ const walletSlice = createSlice({
     activeCards: [
       {
         vendor: "Handelsbanken",
-        number:
-          (Math.random() + " ").substring(2, 10) +
-          (Math.random() + " ").substring(2, 10),
+        number: "4431441314123416".match(/.{1,4}/g).join(" "),
         name: "Jane Doe".toUpperCase(),
         expiry: "12/03",
         cvc: Math.floor(Math.random() * (999 - 100 + 1) + 100),

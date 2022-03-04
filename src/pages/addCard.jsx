@@ -18,7 +18,7 @@ const AddCard = () => {
   const [bank, setBank] = useState("");
 
   const addCard = () => {
-    if (number.toString().length != 16) {
+    if (number.toString().length !== 19) {
       document.querySelector("#cardNumberInput").style.border = "2px solid red";
     } else {
       let newCard = {
@@ -27,10 +27,25 @@ const AddCard = () => {
         expiryMonth: expiryMonth,
         expiryYear: expiryYear,
         cvc: cvc,
-        bank: bank,
       };
       dispatch(addCards(newCard));
       history.push("/");
+    }
+  };
+
+  const validateNumber = (e) => {
+    let regexNumber =
+      e.target.value
+        .replace(/\D+/g, "")
+        .replace(/\D/g, "")
+        .match(/.{1,4}/g) || [];
+    setNumber(regexNumber.join(" ").slice(0, 19));
+  };
+
+  const flipCard = () => {
+    const card = document.querySelector(".card");
+    if (card.classList.contains("is-flipped")) {
+      card.classList.remove("is-flipped");
     }
   };
 
@@ -50,66 +65,70 @@ const AddCard = () => {
 
       <form>
         <div id="inputWrapper">
+          <label htmlFor="cardNumberInput">Card Number</label>
           <input
-            type="number"
+            type="text"
             name="number"
             id="cardNumberInput"
-            placeholder="Card Number"
             value={number}
-            onChange={(e) => {
-              setNumber(e.target.value);
-            }}
-            onFocus={(e) => setFocus(e.target.name)}
+            onChange={validateNumber}
+            onFocus={flipCard}
           />
+
+          <label htmlFor="cardHolderInput">Card holder</label>
           <input
             type="text"
             name="name"
-            placeholder="Name"
+            id="cardHolderInput"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            onFocus={(e) => setFocus(e.target.name)}
+            onFocus={flipCard}
           />
-
-<input
-          autoComplete="off"
-          className="exp"
-          id="month"
-          maxLength="2"
-          pattern="[0-9]*"
-          inputMode="numerical"
-          placeholder="MM"
-          type="text"
-          data-pattern-validate
-          onChange={(e) => {
-            const selectedMonth = e.target.value;
-            setExpiryMonth(selectedMonth);
-          }}
-        />
-        <input
-          autoComplete="off"
-          className="exp"
-          id="year"
-          maxLength="2"
-          pattern="[0-9]*"
-          inputMode="numerical"
-          placeholder="YY"
-          type="text"
-          data-pattern-validate
-          onChange={(e) => {
-            const selectedYear = e.target.value;
-            setExpiryYear(selectedYear);
-          }}
-          
-        />
+          <label htmlFor="month">month</label>
+          <label htmlFor="year">year</label>
           <input
-            type="tel"
-            name="cvc"
-            placeholder="CVC"
-            value={cvc}
-            onChange={(e) => setCvc(e.target.value)}
-            onFocus={(e) => setFocus(e.target.name)}
+            autoComplete="off"
+            className="exp"
+            id="month"
+            maxLength="2"
+            pattern="[0-9]*"
+            inputMode="numerical"
+            placeholder="MM"
+            type="text"
+            data-pattern-validate
+            onChange={(e) => {
+              const selectedMonth = e.target.value;
+              setExpiryMonth(selectedMonth);
+            }}
           />
-
+          <input
+            autoComplete="off"
+            className="exp"
+            id="year"
+            maxLength="2"
+            pattern="[0-9]*"
+            inputMode="numerical"
+            placeholder="YY"
+            type="text"
+            data-pattern-validate
+            onChange={(e) => {
+              const selectedYear = e.target.value;
+              setExpiryYear(selectedYear);
+            }}
+          />
+          <label htmlFor="cvcInput">CVC</label>
+          <input
+            type="number"
+            name="cvc"
+            id="cvcInput"
+            value={cvc}
+            onChange={(e) => setCvc(e.target.value.slice(0, 3))}
+            onFocus={() => {
+              const card = document.querySelector(".card");
+              card.classList.toggle("is-flipped");
+            }}
+          />
+          <label htmlFor="selectBank">Vendor</label>
           <select
             required
             onChange={(e) => {
@@ -129,6 +148,8 @@ const AddCard = () => {
               setBank(e.target.value);
             }}
             defaultValue={"Vendor"}
+            id="selectBank"
+            onFocus={flipCard}
           >
             <option value="Vendor" disabled hidden>
               Vendor
@@ -139,10 +160,9 @@ const AddCard = () => {
             <option value="nordea">nordea</option>
           </select>
         </div>
-        <button id="addNewCardBtn" type="button" onClick={addCard}>
+        <button type="button" onClick={addCard}>
           Add card
         </button>
-        {bank}
       </form>
     </div>
   );
