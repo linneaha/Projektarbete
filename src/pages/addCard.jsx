@@ -28,10 +28,14 @@ const AddCard = () => {
 
 
   const addCard = () => {
-    if (cardNumber.toString().length !== 19) {
+    if (cardNumber.toString().length !== 19 && valid) {
       document.querySelector("#cardNumberInput").style.border = "2px solid red";
     } 
-    if (!valid) {console.log("card added")}
+    if (valid) {
+   document.querySelector('#month').style.border= "2px solid red";
+   document.querySelector('#year').style.border= "2px solid red";
+    }
+    
     else {
       let newCard = {
         cardNumber: cardNumber,
@@ -101,7 +105,8 @@ const AddCard = () => {
           <div className="validThru">
           <label htmlFor="month">month</label>
           <select
-          className={`exp ${valid}` }
+           className={`exp ${valid}` }
+          id="month"
           defaultValue={"MM"}
           onChange={(e) => {
             const selectedMonth = e.target.value;
@@ -124,9 +129,10 @@ const AddCard = () => {
           </div>
           <div className="validThru">
           <label htmlFor="year">year</label>
+          
           <input
             autoComplete="off"
-            className={`exp MM ${valid}`}
+            className={`exp ${valid}` }
             id="year"
             maxLength="2"
             pattern="[0-9]*"

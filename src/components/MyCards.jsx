@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import "./MyCards.css";
 
-const Card = ({ name, number, expiryMonth, expiryYear, cvc, bank }) => {
+const Card = ({ name, cardNumber, expiryMonth, expiryYear, cvc, bank }) => {
   useEffect(() => {
     const card = document.querySelector(".card");
     card.addEventListener("click", () => {
@@ -37,7 +37,7 @@ const Card = ({ name, number, expiryMonth, expiryYear, cvc, bank }) => {
               alt=""
             />
             <div className="card__number number">
-              <div className="number-group number-group--0">{number}</div>
+              <div className="number-group number-group--0">{cardNumber}</div>
             </div>
             <div className="card__details">
               <div className="card__holder">

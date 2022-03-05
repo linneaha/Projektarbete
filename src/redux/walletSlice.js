@@ -6,7 +6,7 @@ const walletSlice = createSlice({
     activeCards: [
       {
         vendor: "Handelsbanken",
-        number: "4431441314123416".match(/.{1,4}/g).join(" "),
+        cardNumber: "4431441314123416".match(/.{1,4}/g).join(" "),
         name: "Jane Doe".toUpperCase(),
         expiryMonth: "12",
         expiryYear: "24",
@@ -21,20 +21,20 @@ const walletSlice = createSlice({
     },
     handleCards: (state, action) => {
       const index = state.inactiveCards
-        .map((card) => card.number)
-        .indexOf(action.payload.number);
+        .map((card) => card.cardNumber)
+        .indexOf(action.payload.cardNumber);
 
       state.inactiveCards.splice(index, 0, state.activeCards[0]);
 
       state.activeCards = [action.payload];
 
       state.inactiveCards = state.inactiveCards.filter(
-        (card) => card.number !== action.payload.number
+        (card) => card.cardNumber !== action.payload.cardNumber
       );
     },
     removeCard: (state, action) => {
       state.inactiveCards = state.inactiveCards.filter(
-        (card) => card.number !== action.payload.number
+        (card) => card.cardNumber !== action.payload.cardNumber
       );
     },
   },
