@@ -156,10 +156,13 @@ button:active {
 }
 
 .exp {
-  display: inline;
+  display: block;
   width: 140px;
-  margin: 20px;
-  margin-top: 0px;
-  margin-bottom: 0px;
+  margin-left: 15px;
+  margin-bottom: 15px;
   align-items: stretch;
+}
+
+.validThru {
+  display: inline-block;
 }

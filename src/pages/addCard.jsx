@@ -74,7 +74,7 @@ const AddCard = () => {
             onChange={validateNumber}
             onFocus={flipCard}
           />
-
+          
           <label htmlFor="cardHolderInput">Card holder</label>
           <input
             type="text"
@@ -84,8 +84,9 @@ const AddCard = () => {
             onChange={(e) => setName(e.target.value)}
             onFocus={flipCard}
           />
+          
+          <div className="validThru">
           <label htmlFor="month">month</label>
-          <label htmlFor="year">year</label>
           <input
             autoComplete="off"
             className="exp"
@@ -101,6 +102,9 @@ const AddCard = () => {
               setExpiryMonth(selectedMonth);
             }}
           />
+          </div>
+          <div className="validThru">
+          <label htmlFor="year">year</label>
           <input
             autoComplete="off"
             className="exp"
@@ -116,6 +120,7 @@ const AddCard = () => {
               setExpiryYear(selectedYear);
             }}
           />
+          </div>
           <label htmlFor="cvcInput">CVC</label>
           <input
             type="number"
