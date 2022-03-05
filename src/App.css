@@ -17,7 +17,7 @@ input {
   height: 50px;
   display: block;
   margin: 10px auto;
-  padding: 8px 16px;
+  padding: 10px 16px;
   font-size: 16px;
   color: #222;
   background-color: #fff;
@@ -166,3 +166,14 @@ button:active {
 .validThru {
   display: inline-block;
 }
+
+
+.true {
+  border: 2px solid red;
+}
+
+.false {
+  border: 2px solid green;
+}
+.space {
+height: 20px}

@@ -9,24 +9,37 @@ const AddCard = () => {
   let dispatch = useDispatch();
   const history = useHistory();
 
-  const [number, setNumber] = useState("");
+  const [cardNumber, setCardNumber] = useState("");
   const [name, setName] = useState("");
   const [expiryMonth, setExpiryMonth] = useState("");
   const [expiryYear, setExpiryYear] = useState("");
   const [cvc, setCvc] = useState("");
   const [focus, setFocus] = useState("");
   const [bank, setBank] = useState("");
+  let newDate = new Date();
+  let currentMonth = newDate.getMonth() + 1;
+  let currentYear = newDate.getYear() - 100;
+  const val1 =  Number(expiryMonth) + Number(expiryYear)*10;
+  const val2 = currentYear*10 + currentMonth;
+  const result = val1 - val2;
+  const valid = result < 0;
+  console.log(valid)
+
+
 
   const addCard = () => {
-    if (number.toString().length !== 19) {
+    if (cardNumber.toString().length !== 19) {
       document.querySelector("#cardNumberInput").style.border = "2px solid red";
-    } else {
+    } 
+    if (!valid) {console.log("card added")}
+    else {
       let newCard = {
-        number: number,
+        cardNumber: cardNumber,
         name: name,
         expiryMonth: expiryMonth,
         expiryYear: expiryYear,
         cvc: cvc,
+        bank: bank,
       };
       dispatch(addCards(newCard));
       history.push("/");
@@ -39,7 +52,7 @@ const AddCard = () => {
         .replace(/\D+/g, "")
         .replace(/\D/g, "")
         .match(/.{1,4}/g) || [];
-    setNumber(regexNumber.join(" ").slice(0, 19));
+    setCardNumber(regexNumber.join(" ").slice(0, 19));
   };
 
   const flipCard = () => {
@@ -54,7 +67,7 @@ const AddCard = () => {
       {/* <h1>Adding new card</h1> */}
       <p id="active">new card</p>
       <Card
-        number={number}
+        cardNumber={cardNumber}
         name={name}
         expiryMonth={expiryMonth}
         expiryYear={expiryYear}
@@ -70,7 +83,7 @@ const AddCard = () => {
             type="text"
             name="number"
             id="cardNumberInput"
-            value={number}
+            value={cardNumber}
             onChange={validateNumber}
             onFocus={flipCard}
           />
@@ -87,27 +100,33 @@ const AddCard = () => {
           
           <div className="validThru">
           <label htmlFor="month">month</label>
-          <input
-            autoComplete="off"
-            className="exp"
-            id="month"
-            maxLength="2"
-            pattern="[0-9]*"
-            inputMode="numerical"
-            placeholder="MM"
-            type="text"
-            data-pattern-validate
-            onChange={(e) => {
-              const selectedMonth = e.target.value;
-              setExpiryMonth(selectedMonth);
-            }}
-          />
+          <select
+          className={`exp ${valid}` }
+          defaultValue={"MM"}
+          onChange={(e) => {
+            const selectedMonth = e.target.value;
+            setExpiryMonth(selectedMonth);
+          }}>           
+            <option value="MM" disabled hidden>MM</option>
+            <option value="01">01</option>
+            <option value="02">02</option>
+            <option value="03">03</option>
+            <option value="04">04</option>
+            <option value="05">05</option>
+            <option value="06">06</option>
+            <option value="07">07</option>
+            <option value="08">08</option>
+            <option value="09">09</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+          </select>
           </div>
           <div className="validThru">
           <label htmlFor="year">year</label>
           <input
             autoComplete="off"
-            className="exp"
+            className={`exp MM ${valid}`}
             id="year"
             maxLength="2"
             pattern="[0-9]*"
