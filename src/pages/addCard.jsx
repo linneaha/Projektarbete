@@ -70,37 +70,36 @@ const AddCard = () => {
             onFocus={(e) => setFocus(e.target.name)}
           />
 
-<input
-          autoComplete="off"
-          className="exp"
-          id="month"
-          maxLength="2"
-          pattern="[0-9]*"
-          inputMode="numerical"
-          placeholder="MM"
-          type="text"
-          data-pattern-validate
-          onChange={(e) => {
-            const selectedMonth = e.target.value;
-            setExpiryMonth(selectedMonth);
-          }}
-        />
-        <input
-          autoComplete="off"
-          className="exp"
-          id="year"
-          maxLength="2"
-          pattern="[0-9]*"
-          inputMode="numerical"
-          placeholder="YY"
-          type="text"
-          data-pattern-validate
-          onChange={(e) => {
-            const selectedYear = e.target.value;
-            setExpiryYear(selectedYear);
-          }}
-          
-        />
+          <input
+            autoComplete="off"
+            className="exp"
+            id="month"
+            maxLength="2"
+            pattern="[0-9]*"
+            inputMode="numerical"
+            placeholder="MM"
+            type="text"
+            data-pattern-validate
+            onChange={(e) => {
+              const selectedMonth = e.target.value;
+              setExpiryMonth(selectedMonth);
+            }}
+          />
+          <input
+            autoComplete="off"
+            className="exp"
+            id="year"
+            maxLength="2"
+            pattern="[0-9]*"
+            inputMode="numerical"
+            placeholder="YY"
+            type="text"
+            data-pattern-validate
+            onChange={(e) => {
+              const selectedYear = e.target.value;
+              setExpiryYear(selectedYear);
+            }}
+          />
           <input
             type="tel"
             name="cvc"
@@ -116,12 +115,18 @@ const AddCard = () => {
               if (e.target.value === "swedbank") {
                 document.querySelector(".card__logo").src =
                   "https://vandergragt.eu/images/swedbank.png";
+                document.querySelector(".master-card").src =
+                  "https://vandergragt.eu/images/mastercard.png";
               } else if (e.target.value === "icabank") {
                 document.querySelector(".card__logo").src =
                   "https://vandergragt.eu/images/ICA.png";
+                document.querySelector(".master-card").src =
+                  "https://vandergragt.eu/images/maestro.png";
               } else if (e.target.value === "nordea") {
                 document.querySelector(".card__logo").src =
                   "https://vandergragt.eu/images/nordea.png";
+                document.querySelector(".master-card").src =
+                  "https://vandergragt.eu/images/kispng-credit-card-viisa-logo.png";
               } else if (e.target.value === "handelsbanken") {
                 document.querySelector(".card__logo").src =
                   "https://vandergragt.eu/images/handelsbbanken.png";
