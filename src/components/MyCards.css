@@ -101,6 +101,10 @@ html {
   padding: 0 2rem;
 }
 
+.card-front:hover {
+  margin-top: -230px;
+}
+
 .card-logo {
   width: 100px;
   height: 20px;

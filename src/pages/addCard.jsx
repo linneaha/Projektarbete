@@ -15,15 +15,14 @@ const AddCard = () => {
   const [expiryYear, setExpiryYear] = useState("");
   const [cvc, setCvc] = useState("");
   const [bank, setBank] = useState("swedbank");
-
   const [logo, setLogo] = useState(
     "https://vandergragt.eu/images/swedbank.png"
   );
   const [vendor, setVendor] = useState(
     "https://vandergragt.eu/images/mastercard.png"
   );
-  const [color, setColor] = useState("");
-  const [validColor, setValidColor] = useState("");
+  const [cardNumberColor, setCardNumberColor] = useState("");
+  const [validColor, setValidColor] = useState("2px solid black");
 
   let newDate = new Date();
   let currentMonth = newDate.getMonth() + 1;
@@ -32,12 +31,13 @@ const AddCard = () => {
   const val2 = currentYear * 10 + currentMonth;
   const result = val1 - val2;
   const valid = result < 0;
+  console.log(valid)
 
   useEffect(() => {
-    if (valid) {
-      setValidColor("red");
+    if (!valid) {
+      setValidColor("2px solid green");
     } else {
-      setValidColor("green");
+      setValidColor("2px solid red");
     }
   }, [valid]);
 
@@ -66,12 +66,12 @@ const AddCard = () => {
         .match(/.{1,4}/g) || [];
     setCardNumber(regexNumber.join(" ").substring(0, 19));
 
-    if (regexNumber.toString().length !== 21) {
-      document.querySelector("#cardNumberInput").style.border = "2px solid red";
+    if (regexNumber.toString().length === 19 || regexNumber.toString().length === 21) {
+      setCardNumberColor("2px solid green");
     } else {
-      document.querySelector("#cardNumberInput").style.border =
-        "2px solid green";
+      setCardNumberColor("2px solid red");
     }
+    console.log(regexNumber.length)
   };
 
   const flipCard = () => {
@@ -105,6 +105,7 @@ const AddCard = () => {
             value={cardNumber}
             onChange={validateNumber}
             onFocus={flipCard}
+            style={{border: cardNumberColor}}
           />
 
           <label htmlFor="cardHolderInput">Card holder</label>
@@ -124,9 +125,12 @@ const AddCard = () => {
               defaultValue={"MM"}
               onChange={(e) => {
                 setExpiryMonth(e.target.value);
+                // if(valid) {
+                //   setValidColor("2px solid red");
+                // }
               }}
               onFocus={flipCard}
-              style={{ borderColor: validColor }}
+              style={{ border: validColor }}
             >
               <option value="MM" disabled hidden>
                 MM
@@ -157,9 +161,12 @@ const AddCard = () => {
               inputMode="numerical"
               placeholder="YY"
               type="text"
-              style={{ borderColor: validColor }}
+              style={{ border: validColor }}
               onChange={(e) => {
                 setExpiryYear(e.target.value);
+                // if(valid) {
+                //   setValidColor("2px solid red");
+                // }
               }}
               onFocus={flipCard}
             />
