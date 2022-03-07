@@ -49,7 +49,7 @@ const Home = () => {
         to="/addcard"
         onClick={(e) => {
           if (inactiveCards.length >= 3) {
-            setErrorMessage("You have to many cards remove one to add another!");
+            setErrorMessage("You have too many cards remove one to add another!");
             setTimeout(() => {
               setErrorMessage("");
             }, 3000);
