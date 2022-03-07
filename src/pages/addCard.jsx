@@ -8,7 +8,7 @@ import Card from "../components/MyCards";
 const AddCard = () => {
   let dispatch = useDispatch();
   const history = useHistory();
-  const {cardHolderName} = useSelector((state) => state.wallet);
+  const { cardHolderName } = useSelector((state) => state.wallet);
 
   const [cardNumber, setCardNumber] = useState("");
   const [expiryMonth, setExpiryMonth] = useState("");
@@ -23,6 +23,7 @@ const AddCard = () => {
   const val2 = currentYear * 10 + currentMonth;
   const result = val1 - val2;
   const valid = result < 0;
+  console.log(valid);
 
   const addCard = () => {
     if (cardNumber.toString().length === 19 && !valid) {
@@ -64,7 +65,7 @@ const AddCard = () => {
 
   return (
     <div className="App">
-      {/* <h1>Adding new card</h1> */}
+      <h1>Adding new card</h1>
       <p id="active">new card</p>
       <Card
         cardNumber={cardNumber}
@@ -102,7 +103,17 @@ const AddCard = () => {
               className={`exp ${valid}`}
               id="month"
               defaultValue={"MM"}
-              onChange={(e) => setExpiryMonth(e.target.value)}
+              onChange={(e) => {
+                setExpiryMonth(e.target.value);
+                if (valid) {
+                  document.querySelector("#month").style.border =
+                    "2px solid red";
+                } else {
+                  document.querySelector("#month").style.border =
+                    "2px solid green";
+                }
+              }}
+              onFocus={flipCard}
             >
               <option value="MM" disabled hidden>
                 MM
@@ -121,9 +132,9 @@ const AddCard = () => {
               <option value="12">12</option>
             </select>
           </div>
+
           <div className="validThru">
             <label htmlFor="year">year</label>
-
             <input
               autoComplete="off"
               className={`exp ${valid}`}
@@ -133,8 +144,18 @@ const AddCard = () => {
               inputMode="numerical"
               placeholder="YY"
               type="text"
-              data-pattern-validate
-              onChange={(e) => setExpiryYear(e.target.value)}
+              
+              onChange={(e) => {
+                setExpiryYear(e.target.value);
+                if (valid) {
+                  document.querySelector("#year").style.border =
+                    "2px solid red";
+                } else {
+                  document.querySelector("#year").style.border =
+                    "2px solid green";
+                }
+              }}
+              onFocus={flipCard}
             />
           </div>
           <label htmlFor="cvcInput">CVC</label>
@@ -159,13 +180,12 @@ const AddCard = () => {
               } else if (e.target.value === "icabank") {
                 document.querySelector(".card__logo").src =
                   "https://vandergragt.eu/images/ICA.png";
-                  document.querySelector(".master-card").src =
+                document.querySelector(".master-card").src =
                   "https://vandergragt.eu/images/maestro.png";
-                  
               } else if (e.target.value === "nordea") {
                 document.querySelector(".card__logo").src =
                   "https://vandergragt.eu/images/nordea.png";
-                  document.querySelector(".master-card").src =
+                document.querySelector(".master-card").src =
                   "https://vandergragt.eu/images/kispng-credit-card-viisa-logo.png";
               } else if (e.target.value === "handelsbanken") {
                 document.querySelector(".card__logo").src =
