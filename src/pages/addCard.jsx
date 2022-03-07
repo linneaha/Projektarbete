@@ -2,7 +2,7 @@ import "../App.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addCards } from "../redux/walletSlice";
 import { useHistory } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Card from "../components/MyCards";
 
 const AddCard = () => {
@@ -14,7 +14,12 @@ const AddCard = () => {
   const [expiryMonth, setExpiryMonth] = useState("");
   const [expiryYear, setExpiryYear] = useState("");
   const [cvc, setCvc] = useState("");
-  const [bank, setBank] = useState("");
+  const [bank, setBank] = useState("swedbank");
+
+  const [logo, setLogo] = useState("https://vandergragt.eu/images/swedbank.png");
+  const [vendor, setVendor] = useState("https://vandergragt.eu/images/mastercard.png");
+  const [color, setColor] = useState("");
+  const [validColor, setValidColor] = useState("");
 
   let newDate = new Date();
   let currentMonth = newDate.getMonth() + 1;
@@ -23,7 +28,14 @@ const AddCard = () => {
   const val2 = currentYear * 10 + currentMonth;
   const result = val1 - val2;
   const valid = result < 0;
-  console.log(valid);
+
+  useEffect(() => {
+    if (valid) {
+      setValidColor("red");
+    } else {
+      setValidColor("green");
+    }
+  }, [valid]);
 
   const addCard = () => {
     if (cardNumber.toString().length === 19 && !valid) {
@@ -34,6 +46,8 @@ const AddCard = () => {
         expiryYear: expiryYear,
         cvc: cvc,
         bank: bank,
+        vendor: vendor,
+        logo: logo,
       };
       dispatch(addCards(newCard));
       history.push("/");
@@ -65,7 +79,6 @@ const AddCard = () => {
 
   return (
     <div className="App">
-      <h1>Adding new card</h1>
       <p id="active">new card</p>
       <Card
         cardNumber={cardNumber}
@@ -74,6 +87,8 @@ const AddCard = () => {
         expiryYear={expiryYear}
         cvc={cvc}
         bank={bank}
+        vendor={vendor}
+        logo={logo}
       />
 
       <form>
@@ -105,15 +120,9 @@ const AddCard = () => {
               defaultValue={"MM"}
               onChange={(e) => {
                 setExpiryMonth(e.target.value);
-                if (valid) {
-                  document.querySelector("#month").style.border =
-                    "2px solid red";
-                } else {
-                  document.querySelector("#month").style.border =
-                    "2px solid green";
-                }
               }}
               onFocus={flipCard}
+              style={{ borderColor: validColor }}
             >
               <option value="MM" disabled hidden>
                 MM
@@ -144,16 +153,9 @@ const AddCard = () => {
               inputMode="numerical"
               placeholder="YY"
               type="text"
-              
+              style={{ borderColor: validColor }}
               onChange={(e) => {
                 setExpiryYear(e.target.value);
-                if (valid) {
-                  document.querySelector("#year").style.border =
-                    "2px solid red";
-                } else {
-                  document.querySelector("#year").style.border =
-                    "2px solid green";
-                }
               }}
               onFocus={flipCard}
             />
@@ -175,21 +177,21 @@ const AddCard = () => {
             required
             onChange={(e) => {
               if (e.target.value === "swedbank") {
-                document.querySelector(".card__logo").src =
-                  "https://vandergragt.eu/images/swedbank.png";
+                setLogo("https://vandergragt.eu/images/swedbank.png");
+                setVendor("https://vandergragt.eu/images/mastercard.png");
               } else if (e.target.value === "icabank") {
-                document.querySelector(".card__logo").src =
-                  "https://vandergragt.eu/images/ICA.png";
-                document.querySelector(".master-card").src =
-                  "https://vandergragt.eu/images/maestro.png";
+                setLogo("https://vandergragt.eu/images/ICA.png");
+                setVendor(
+                  "https://vandergragt.eu/images/kispng-credit-card-viisa-logo.png"
+                );
               } else if (e.target.value === "nordea") {
-                document.querySelector(".card__logo").src =
-                  "https://vandergragt.eu/images/nordea.png";
-                document.querySelector(".master-card").src =
-                  "https://vandergragt.eu/images/kispng-credit-card-viisa-logo.png";
+                setLogo("https://vandergragt.eu/images/nordea.png");
+                setVendor(
+                  "https://vandergragt.eu/images/kispng-credit-card-viisa-logo.png"
+                );
               } else if (e.target.value === "handelsbanken") {
-                document.querySelector(".card__logo").src =
-                  "https://vandergragt.eu/images/handelsbbanken.png";
+                setLogo("https://vandergragt.eu/images/handelsbbanken.png");
+                setVendor("https://vandergragt.eu/images/mastercard.png");
               }
               setBank(e.target.value);
             }}
@@ -215,3 +217,8 @@ const AddCard = () => {
 };
 
 export { AddCard };
+
+// //  document.querySelector(".card-logo").src =
+// "https://vandergragt.eu/images/swedbank.png";
+// document.querySelector(".master-card").src =
+//   "https://vandergragt.eu/images/mastercard.png";

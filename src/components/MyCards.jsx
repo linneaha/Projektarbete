@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import "./MyCards.css";
 
-const Card = ({ name, cardNumber, expiryMonth, expiryYear, cvc, bank }) => {
+const Card = ({ name, cardNumber, expiryMonth, expiryYear, cvc, bank, vendor, logo }) => {
   useEffect(() => {
     const card = document.querySelector(".card");
     card.addEventListener("click", () => {
@@ -17,8 +17,8 @@ const Card = ({ name, cardNumber, expiryMonth, expiryYear, cvc, bank }) => {
           {/* card front */}
           <div className="card__front">
             <img
-              className="card__logo"
-              src="https://vandergragt.eu/images/nordea.png"
+              className="card-logo"
+              src={`${logo}`}
               alt=""
             />
             <img
@@ -27,7 +27,7 @@ const Card = ({ name, cardNumber, expiryMonth, expiryYear, cvc, bank }) => {
               alt=""
             />
             <img
-              src="https://vandergragt.eu/images/mastercard.png"
+              src={`${vendor}`}
               className="master-card"
               alt=""
             />
