@@ -12,7 +12,9 @@ const walletSlice = createSlice({
   initialState: {
     activeCards: [
       {
-        vendor: "Handelsbanken",
+        vendor: "https://vandergragt.eu/images/mastercard.png",
+        bank: "swedbank",
+        logo: "https://vandergragt.eu/images/swedbank.png",
         cardNumber: "4431441314123416".match(/.{1,4}/g).join(" "),
         name: "",
         expiryMonth: "12",

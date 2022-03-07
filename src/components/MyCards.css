@@ -9,11 +9,11 @@
 /* Variables */
 
 :root {
-    --white: #ffffff;
-    --violet: #e2d8fd;
-    --dark-blue: #16044a;
-    --gray1: #e1e1e1;
-    --gray2: #0e0244;
+  --white: #ffffff;
+  --violet: #e2d8fd;
+  --dark-blue: #16044a;
+  --gray1: #e1e1e1;
+  --gray2: #0e0244;
 }
 
 html,
@@ -60,7 +60,6 @@ html {
   background-image: linear-gradient(43deg, #769bac, #4e5f62, #f2fdff, #e6fcff);
 }
 
-
 .swedbank {
   background: linear-gradient(
     40deg,
@@ -102,9 +101,9 @@ html {
   padding: 0 2rem;
 }
 
-.card__logo {
+.card-logo {
   width: 100px;
-  height: 20px; 
+  height: 20px;
   margin-top: 23px;
   position: absolute;
   right: 30px;
@@ -130,13 +129,13 @@ html {
   left: 62px;
   color: #fff;
 }
-.card__logo .chip {
+.card-logo .chip {
   position: absolute;
 }
 .card__number {
   display: flex;
   justify-content: space-between;
-  text-shadow: 0 2px 1px  rgba(6, 1, 49, 0.333);;
+  text-shadow: 0 2px 1px rgba(6, 1, 49, 0.333);
   margin-top: 72px;
   min-height: 25px;
 }
@@ -167,7 +166,7 @@ html {
 .card__expiration__title {
   font-family: "Segoe UI", Tahoma, Geneva, Verfana, sans-serif;
   text-align: left;
-  color:  rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
   opacity: 0.7;
   font-size: 10px;
   margin-bottom: 0.2rem;
@@ -227,4 +226,3 @@ html {
   padding: 11px 20px 1px 20px;
   color: var(--white);
 }
-
