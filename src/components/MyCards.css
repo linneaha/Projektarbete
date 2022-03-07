@@ -9,11 +9,11 @@
 /* Variables */
 
 :root {
-  --white: #0033ff;
-  --violet: #e2d8fd;
-  --dark-blue: #16044a;
-  --gray1: #e1e1e1;
-  --gray2: #6a6a6a;
+    --white: #ffffff;
+    --violet: #e2d8fd;
+    --dark-blue: #16044a;
+    --gray1: #e1e1e1;
+    --gray2: #0e0244;
 }
 
 html,
@@ -57,18 +57,9 @@ html {
 }
 
 .handelsbanken {
-  background: #769bac;
+  background-image: linear-gradient(43deg, #769bac, #4e5f62, #f2fdff, #e6fcff);
 }
-.nordea {
-  background-image: linear-gradient(
-    30deg,
-    #000033,
-    #4a148c,
-    #311b92,
-    #000033,
-    #000000
-  );
-}
+
 
 .swedbank {
   background: linear-gradient(
@@ -89,14 +80,9 @@ html {
     #000033,
     #4a148c,
     #311b92,
-    #000033,
-    #000000
+    rgb(68, 68, 161),
+    #5b6bfa
   );
-
-}
-
-.seb {
-  background-image: linear-gradient(43deg, #dce775, #9ccc65, #4caf50, #00897b);
 }
 
 .card:hover {
@@ -150,7 +136,7 @@ html {
 .card__number {
   display: flex;
   justify-content: space-between;
-  text-shadow: 0 2px 1px #0005;
+  text-shadow: 0 2px 1px  rgba(6, 1, 49, 0.333);;
 
   margin-top: 72px;
 }
@@ -181,7 +167,7 @@ html {
 .card__expiration__title {
   font-family: "Segoe UI", Tahoma, Geneva, Verfana, sans-serif;
   text-align: left;
-  color: rgb(15, 10, 48);
+  color:  rgb(255, 255, 255);
   opacity: 0.7;
   font-size: 10px;
   margin-bottom: 0.2rem;
