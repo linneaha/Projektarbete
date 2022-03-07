@@ -31,7 +31,6 @@ const AddCard = () => {
   const val2 = currentYear * 10 + currentMonth;
   const result = val1 - val2;
   const valid = result < 0;
-  console.log(valid)
 
   useEffect(() => {
     if (!valid) {
@@ -51,7 +50,7 @@ const AddCard = () => {
         cvc: cvc,
         bank: bank,
         vendor: vendor,
-        logo: logo
+        logo: logo,
       };
       dispatch(addCards(newCard));
       history.push("/");
@@ -66,12 +65,14 @@ const AddCard = () => {
         .match(/.{1,4}/g) || [];
     setCardNumber(regexNumber.join(" ").substring(0, 19));
 
-    if (regexNumber.toString().length === 19 || regexNumber.toString().length === 21) {
+    if (
+      regexNumber.toString().length === 19 ||
+      regexNumber.toString().length === 21
+    ) {
       setCardNumberColor("2px solid green");
     } else {
       setCardNumberColor("2px solid red");
     }
-    console.log(regexNumber.length)
   };
 
   const flipCard = () => {
@@ -83,7 +84,7 @@ const AddCard = () => {
 
   return (
     <div className="App">
-      <p id="active">new card</p>
+      <p className="small">new card</p>
       <Card
         cardNumber={cardNumber}
         name={cardHolderName}
@@ -105,7 +106,7 @@ const AddCard = () => {
             value={cardNumber}
             onChange={validateNumber}
             onFocus={flipCard}
-            style={{border: cardNumberColor}}
+            style={{ border: cardNumberColor }}
           />
 
           <label htmlFor="cardHolderInput">Card holder</label>
@@ -116,60 +117,58 @@ const AddCard = () => {
             value={cardHolderName}
             readOnly
           />
+          <div id="validWrapper">
+            <div id="validThru1">
+              <label htmlFor="month">month</label>
+              <select
+                className={`exp ${valid}`}
+                id="month"
+                defaultValue={"MM"}
+                onChange={(e) => {
+                  setExpiryMonth(e.target.value);
+                  // if(valid) {
+                  //   setValidColor("2px solid red");
+                  // }
+                }}
+                onFocus={flipCard}
+                style={{ border: validColor }}
+              >
+                <option value="MM" disabled hidden>
+                  MM
+                </option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+            </div>
 
-          <div className="validThru">
-            <label htmlFor="month">month</label>
-            <select
-              className={`exp ${valid}`}
-              id="month"
-              defaultValue={"MM"}
-              onChange={(e) => {
-                setExpiryMonth(e.target.value);
-                // if(valid) {
-                //   setValidColor("2px solid red");
-                // }
-              }}
-              onFocus={flipCard}
-              style={{ border: validColor }}
-            >
-              <option value="MM" disabled hidden>
-                MM
-              </option>
-              <option value="01">01</option>
-              <option value="02">02</option>
-              <option value="03">03</option>
-              <option value="04">04</option>
-              <option value="05">05</option>
-              <option value="06">06</option>
-              <option value="07">07</option>
-              <option value="08">08</option>
-              <option value="09">09</option>
-              <option value="10">10</option>
-              <option value="11">11</option>
-              <option value="12">12</option>
-            </select>
-          </div>
-
-          <div className="validThru">
-            <label htmlFor="year">year</label>
-            <input
-              autoComplete="off"
-              className={`exp ${valid}`}
-              id="year"
-              maxLength="2"
-              pattern="[0-9]*"
-              inputMode="numerical"
-              placeholder="YY"
-              type="text"
-              style={{ border: validColor }}
-              onChange={(e) => {
-                setExpiryYear(e.target.value);
-                // if(valid) {
-                //   setValidColor("2px solid red");
-                // }
-              }}
-              onFocus={flipCard}
-            />
+            <div id="validThru2">
+              <label htmlFor="year">year</label>
+              <input
+                className={`exp ${valid}`}
+                id="year"
+                value={expiryYear}
+                placeholder="YY"
+                type="number"
+                style={{ border: validColor }}
+                onChange={(e) => {
+                  setExpiryYear(e.target.value.slice(0, 2));
+                  // if(valid) {
+                  //   setValidColor("2px solid red");
+                  // }
+                }}
+                onFocus={flipCard}
+              />
+            </div>
           </div>
           <label htmlFor="cvcInput">CVC</label>
           <input
