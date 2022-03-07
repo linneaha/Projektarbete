@@ -115,11 +115,11 @@ const AddCard = () => {
             value={cardHolderName}
             readOnly
           />
-
+<div>
           <div className="validThru">
             <label htmlFor="month">month</label>
             <select
-              className={`exp ${valid}`}
+              className="valid"
               id="month"
               defaultValue={"MM"}
               onChange={(e) => {
@@ -150,7 +150,7 @@ const AddCard = () => {
             <label htmlFor="year">year</label>
             <input
               autoComplete="off"
-              className={`exp ${valid}`}
+              className="valid"
               id="year"
               maxLength="2"
               pattern="[0-9]*"
@@ -163,6 +163,8 @@ const AddCard = () => {
               }}
               onFocus={flipCard}
             />
+          </div>
+
           </div>
           <label htmlFor="cvcInput">CVC</label>
           <input
