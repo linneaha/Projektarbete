@@ -1,109 +1,228 @@
 import "../App.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addCards } from "../redux/walletSlice";
 import { useHistory } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Card from "../components/MyCards";
 
 const AddCard = () => {
   let dispatch = useDispatch();
   const history = useHistory();
+  const { cardHolderName } = useSelector((state) => state.wallet);
 
-  const [number, setNumber] = useState("");
-  const [name, setName] = useState("");
-  const [expiry, setExpiry] = useState("");
+  const [cardNumber, setCardNumber] = useState("");
+  const [expiryMonth, setExpiryMonth] = useState(null);
+  const [expiryYear, setExpiryYear] = useState("");
   const [cvc, setCvc] = useState("");
-  const [focus, setFocus] = useState("");
-  const [bank, setBank] = useState("");
+  const [bank, setBank] = useState("swedbank");
+  const [logo, setLogo] = useState(
+    "https://vandergragt.eu/images/swedbank.png"
+  );
+  const [vendor, setVendor] = useState(
+    "https://vandergragt.eu/images/mastercard.png"
+  );
+  const [cardNumberColor, setCardNumberColor] = useState("");
+  const [validColor, setValidColor] = useState("2px solid black");
+
+  let newDate = new Date();
+  let currentMonth = newDate.getMonth() + 1;
+  let currentYear = newDate.getYear() - 100;
+  const val1 = Number(expiryMonth) + Number(expiryYear) * 10;
+  const val2 = currentYear * 10 + currentMonth;
+  const result = val1 - val2;
+  const valid = result < 0;
+  console.log(expiryMonth)
+
+  useEffect(() => {
+    if (!valid  && expiryMonth !==null) {
+      setValidColor("2px solid green");
+    } else {
+      setValidColor("2px solid red");
+    }
+  }, [valid, expiryMonth]);
 
   const addCard = () => {
-    if (number.toString().length != 16) {
-      document.querySelector("#cardNumberInput").style.border = "2px solid red";
-    } else {
+    if (cardNumber.toString().length === 19 && !valid && expiryMonth !==null) {
       let newCard = {
-        number: number,
-        name: name,
-        expiry: expiry,
+        cardNumber: cardNumber,
+        name: cardHolderName,
+        expiryMonth: expiryMonth,
+        expiryYear: expiryYear,
         cvc: cvc,
         bank: bank,
+        vendor: vendor,
+        logo: logo,
       };
       dispatch(addCards(newCard));
       history.push("/");
     }
   };
 
+  const validateNumber = (e) => {
+    let regexNumber =
+      e.target.value
+        .replace(/\D+/g, "")
+        .replace(/\D/g, "")
+        .match(/.{1,4}/g) || [];
+    setCardNumber(regexNumber.join(" ").substring(0, 19));
+
+    if (
+      regexNumber.toString().length === 19 ||
+      regexNumber.toString().length === 21
+    ) {
+      setCardNumberColor("2px solid green");
+    } else {
+      setCardNumberColor("2px solid red");
+    }
+  };
+
+  const flipCard = () => {
+    const card = document.querySelector(".card");
+    if (card.classList.contains("is-flipped")) {
+      card.classList.remove("is-flipped");
+    }
+  };
+
   return (
     <div className="App">
-      {/* <h1>Adding new card</h1> */}
-      <p id="active">new card</p>
+      <p className="small">new card</p>
       <Card
-        number={number}
-        name={name}
-        expiry={expiry}
+        cardNumber={cardNumber}
+        name={cardHolderName}
+        expiryMonth={expiryMonth}
+        expiryYear={expiryYear}
         cvc={cvc}
-        focused={focus}
         bank={bank}
+        vendor={vendor}
+        logo={logo}
       />
 
       <form>
         <div id="inputWrapper">
+          <label htmlFor="cardNumberInput">Card Number</label>
           <input
-            type="number"
+            type="text"
             name="number"
             id="cardNumberInput"
-            placeholder="Card Number"
-            value={number}
-            onChange={(e) => {
-              setNumber(e.target.value);
-            }}
-            onFocus={(e) => setFocus(e.target.name)}
+            value={cardNumber}
+            onChange={validateNumber}
+            onFocus={flipCard}
+            style={{ border: cardNumberColor }}
           />
+
+          <label htmlFor="cardHolderInput">Card holder</label>
           <input
             type="text"
             name="name"
-            placeholder="Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            onFocus={(e) => setFocus(e.target.name)}
+            id="cardHolderInput"
+            value={cardHolderName}
+            readOnly
           />
-          <input
-            type="text"
-            name="expiry"
-            placeholder="MM/YY"
-            value={expiry}
-            onChange={(e) => setExpiry(e.target.value)}
-            onFocus={(e) => setFocus(e.target.name)}
-          />
-          <input
-            type="tel"
-            name="cvc"
-            placeholder="CVC"
-            value={cvc}
-            onChange={(e) => setCvc(e.target.value)}
-            onFocus={(e) => setFocus(e.target.name)}
-          />
+          <div id="validWrapper">
+            <div id="validThru1">
+              <label htmlFor="month">month</label>
+              <select
+                className={`exp ${valid}`}
+                id="month"
+                defaultValue={"MM"}
+                onChange={(e) => {
+                  setExpiryMonth(e.target.value);
+                  // if(valid) {
+                  //   setValidColor("2px solid red");
+                  // }
+                }}
+                onFocus={flipCard}
+                style={{ border: validColor }}
+              >
+                <option value="MM" disabled hidden>
+                  MM
+                </option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+            </div>
 
+            <div id="validThru2">
+              <label htmlFor="year">year</label>
+              <input
+                className={`exp ${valid}`}
+                id="year"
+                value={expiryYear}
+                placeholder="YY"
+                type="number"
+                style={{ border: validColor }}
+                onChange={(e) => {
+                  setExpiryYear(e.target.value.slice(0, 2));
+                  // if(valid) {
+                  //   setValidColor("2px solid red");
+                  // }
+                }}
+                onFocus={flipCard}
+              />
+            </div>
+          </div>
+
+          <label htmlFor="cvcInput">CVC</label>
+          <input
+            type="number"
+            name="cvc"
+            id="cvcInput"
+            value={cvc}
+            onChange={(e) => setCvc(e.target.value.slice(0, 3))}
+            onFocus={() => {
+              const card = document.querySelector(".card");
+              card.classList.toggle("is-flipped");
+            }}
+          />
+          <label htmlFor="selectBank">Vendor</label>
           <select
             required
             onChange={(e) => {
-              const selectedBank = e.target.value;
-              setBank(selectedBank);
+              if (e.target.value === "swedbank") {
+                setLogo("https://vandergragt.eu/images/swedbank.png");
+                setVendor("https://vandergragt.eu/images/mastercard.png");
+              } else if (e.target.value === "icabank") {
+                setLogo("https://vandergragt.eu/images/ICA.png");
+                setVendor(
+                  "https://vandergragt.eu/images/kispng-credit-card-viisa-logo.png"
+                );
+              } else if (e.target.value === "nordea") {
+                setLogo("https://vandergragt.eu/images/nordea.png");
+                setVendor(
+                  "https://vandergragt.eu/images/kispng-credit-card-viisa-logo.png"
+                );
+              } else if (e.target.value === "handelsbanken") {
+                setLogo("https://vandergragt.eu/images/handelsbbanken.png");
+                setVendor("https://vandergragt.eu/images/mastercard.png");
+              }
+              setBank(e.target.value);
             }}
             defaultValue={"Vendor"}
+            id="selectBank"
+            onFocus={flipCard}
           >
             <option value="Vendor" disabled hidden>
               Vendor
             </option>
             <option value="handelsbanken">Handelsbanken</option>
-            <option value="nordea">NORDEA</option>
-            <option value="sparbanken">Sparbanken</option>
-            <option value="seb">SEB</option>
+            <option value="swedbank">swedbank</option>
+            <option value="icabank">ica banken</option>
+            <option value="nordea">nordea</option>
           </select>
         </div>
-        <button id="addNewCardBtn" type="button" onClick={addCard}>
+        <button type="button" onClick={addCard}>
           Add card
         </button>
-        {bank}
       </form>
     </div>
   );
