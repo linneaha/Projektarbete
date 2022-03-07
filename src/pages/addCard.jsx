@@ -15,8 +15,13 @@ const AddCard = () => {
   const [expiryYear, setExpiryYear] = useState("");
   const [cvc, setCvc] = useState("");
   const [bank, setBank] = useState("swedbank");
-  const [logo, setLogo] = useState("https://vandergragt.eu/images/swedbank.png");
-  const [vendor, setVendor] = useState("https://vandergragt.eu/images/mastercard.png");
+
+  const [logo, setLogo] = useState(
+    "https://vandergragt.eu/images/swedbank.png"
+  );
+  const [vendor, setVendor] = useState(
+    "https://vandergragt.eu/images/mastercard.png"
+  );
   const [color, setColor] = useState("");
   const [validColor, setValidColor] = useState("");
 
@@ -46,7 +51,7 @@ const AddCard = () => {
         cvc: cvc,
         bank: bank,
         vendor: vendor,
-        logo: logo,
+        logo: logo
       };
       dispatch(addCards(newCard));
       history.push("/");
@@ -91,7 +96,7 @@ const AddCard = () => {
       />
 
       <form>
-        
+        <div id="inputWrapper">
           <label htmlFor="cardNumberInput">Card Number</label>
           <input
             type="text"
@@ -110,11 +115,11 @@ const AddCard = () => {
             value={cardHolderName}
             readOnly
           />
-      <div>
-          
+
+          <div className="validThru">
             <label htmlFor="month">month</label>
-            <div className="validThru">
             <select
+              className={`exp ${valid}`}
               id="month"
               defaultValue={"MM"}
               onChange={(e) => {
@@ -141,10 +146,11 @@ const AddCard = () => {
             </select>
           </div>
 
+          <div className="validThru">
             <label htmlFor="year">year</label>
-            <div className="validThru">
             <input
               autoComplete="off"
+              className={`exp ${valid}`}
               id="year"
               maxLength="2"
               pattern="[0-9]*"
@@ -158,7 +164,6 @@ const AddCard = () => {
               onFocus={flipCard}
             />
           </div>
-          
           <label htmlFor="cvcInput">CVC</label>
           <input
             type="number"
