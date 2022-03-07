@@ -11,7 +11,7 @@ const AddCard = () => {
   const { cardHolderName } = useSelector((state) => state.wallet);
 
   const [cardNumber, setCardNumber] = useState("");
-  const [expiryMonth, setExpiryMonth] = useState("");
+  const [expiryMonth, setExpiryMonth] = useState(null);
   const [expiryYear, setExpiryYear] = useState("");
   const [cvc, setCvc] = useState("");
   const [bank, setBank] = useState("swedbank");
@@ -31,17 +31,18 @@ const AddCard = () => {
   const val2 = currentYear * 10 + currentMonth;
   const result = val1 - val2;
   const valid = result < 0;
+  console.log(expiryMonth)
 
   useEffect(() => {
-    if (!valid) {
+    if (!valid  && expiryMonth !==null) {
       setValidColor("2px solid green");
     } else {
       setValidColor("2px solid red");
     }
-  }, [valid]);
+  }, [valid, expiryMonth]);
 
   const addCard = () => {
-    if (cardNumber.toString().length === 19 && !valid) {
+    if (cardNumber.toString().length === 19 && !valid && expiryMonth !==null) {
       let newCard = {
         cardNumber: cardNumber,
         name: cardHolderName,
