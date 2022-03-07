@@ -161,14 +161,14 @@ button:active {
   width: 140px;
   margin-left: 15px;
   margin-bottom: 15px;
-  align-items: stretch;
+  /* align-items: stretch; */
 }
 
 .validThru {
   display: inline-block;
 }
 
-.space {
+/* .space {
   height: 20px;
-}
+} */
 
