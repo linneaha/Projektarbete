@@ -1,4 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+
+export const getUser = createAsyncThunk("wallet/getUser",
+  async () => {
+    return fetch("https://randomuser.me/api/").then((response) =>
+      response.json()
+    );
+  });
 
 const walletSlice = createSlice({
   name: "wallet",
@@ -7,13 +14,14 @@ const walletSlice = createSlice({
       {
         vendor: "Handelsbanken",
         cardNumber: "4431441314123416".match(/.{1,4}/g).join(" "),
-        name: "Jane Doe".toUpperCase(),
+        name: "",
         expiryMonth: "12",
         expiryYear: "24",
         cvc: Math.floor(Math.random() * (999 - 100 + 1) + 100),
       },
     ],
     inactiveCards: [],
+    cardHolderName: "",
   },
   reducers: {
     addCards: (state, action) => {
@@ -36,6 +44,24 @@ const walletSlice = createSlice({
       state.inactiveCards = state.inactiveCards.filter(
         (card) => card.cardNumber !== action.payload.cardNumber
       );
+    },
+  },
+  extraReducers: {
+    [getUser.pending]: (state, action) => {
+      console.log("Fetching data");
+    },
+    [getUser.fulfilled]: (state, action) => {
+      state.activeCards[0].name =
+        action.payload.results[0].name.first.toUpperCase() +
+        " " +
+        action.payload.results[0].name.last.toUpperCase();
+      state.cardHolderName =
+        action.payload.results[0].name.first.toUpperCase() +
+        " " +
+        action.payload.results[0].name.last.toUpperCase();
+    },
+    [getUser.rejected]: (state, action) => {
+      console.log("Failed to fetch data");
     },
   },
 });

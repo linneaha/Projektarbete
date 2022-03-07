@@ -8,7 +8,7 @@ const Card = ({ name, cardNumber, expiryMonth, expiryYear, cvc, bank }) => {
       card.classList.toggle("is-flipped");
     });
   }, []);
-  
+
   return (
     <main className="main-container">
       <div className="scene">
