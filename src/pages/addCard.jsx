@@ -15,15 +15,14 @@ const AddCard = () => {
   const [expiryYear, setExpiryYear] = useState("");
   const [cvc, setCvc] = useState("");
   const [bank, setBank] = useState("swedbank");
-
   const [logo, setLogo] = useState(
     "https://vandergragt.eu/images/swedbank.png"
   );
   const [vendor, setVendor] = useState(
     "https://vandergragt.eu/images/mastercard.png"
   );
-  const [color, setColor] = useState("");
-  const [validColor, setValidColor] = useState("");
+  const [cardNumberColor, setCardNumberColor] = useState("");
+  const [validColor, setValidColor] = useState("2px solid black");
 
   let newDate = new Date();
   let currentMonth = newDate.getMonth() + 1;
@@ -34,10 +33,10 @@ const AddCard = () => {
   const valid = result < 0;
 
   useEffect(() => {
-    if (valid) {
-      setValidColor("red");
+    if (!valid) {
+      setValidColor("2px solid green");
     } else {
-      setValidColor("green");
+      setValidColor("2px solid red");
     }
   }, [valid]);
 
@@ -51,7 +50,7 @@ const AddCard = () => {
         cvc: cvc,
         bank: bank,
         vendor: vendor,
-        logo: logo
+        logo: logo,
       };
       dispatch(addCards(newCard));
       history.push("/");
@@ -66,11 +65,13 @@ const AddCard = () => {
         .match(/.{1,4}/g) || [];
     setCardNumber(regexNumber.join(" ").substring(0, 19));
 
-    if (regexNumber.toString().length !== 21) {
-      document.querySelector("#cardNumberInput").style.border = "2px solid red";
+    if (
+      regexNumber.toString().length === 19 ||
+      regexNumber.toString().length === 21
+    ) {
+      setCardNumberColor("2px solid green");
     } else {
-      document.querySelector("#cardNumberInput").style.border =
-        "2px solid green";
+      setCardNumberColor("2px solid red");
     }
   };
 
@@ -83,7 +84,7 @@ const AddCard = () => {
 
   return (
     <div className="App">
-      <p id="active">new card</p>
+      <p className="small">new card</p>
       <Card
         cardNumber={cardNumber}
         name={cardHolderName}
@@ -105,6 +106,7 @@ const AddCard = () => {
             value={cardNumber}
             onChange={validateNumber}
             onFocus={flipCard}
+            style={{ border: cardNumberColor }}
           />
 
           <label htmlFor="cardHolderInput">Card holder</label>
@@ -115,57 +117,60 @@ const AddCard = () => {
             value={cardHolderName}
             readOnly
           />
-<div>
-          <div className="validThru">
-            <label htmlFor="month">month</label>
-            <select
-              className="valid"
-              id="month"
-              defaultValue={"MM"}
-              onChange={(e) => {
-                setExpiryMonth(e.target.value);
-              }}
-              onFocus={flipCard}
-              style={{ borderColor: validColor }}
-            >
-              <option value="MM" disabled hidden>
-                MM
-              </option>
-              <option value="01">01</option>
-              <option value="02">02</option>
-              <option value="03">03</option>
-              <option value="04">04</option>
-              <option value="05">05</option>
-              <option value="06">06</option>
-              <option value="07">07</option>
-              <option value="08">08</option>
-              <option value="09">09</option>
-              <option value="10">10</option>
-              <option value="11">11</option>
-              <option value="12">12</option>
-            </select>
+          <div id="validWrapper">
+            <div id="validThru1">
+              <label htmlFor="month">month</label>
+              <select
+                className={`exp ${valid}`}
+                id="month"
+                defaultValue={"MM"}
+                onChange={(e) => {
+                  setExpiryMonth(e.target.value);
+                  // if(valid) {
+                  //   setValidColor("2px solid red");
+                  // }
+                }}
+                onFocus={flipCard}
+                style={{ border: validColor }}
+              >
+                <option value="MM" disabled hidden>
+                  MM
+                </option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+            </div>
+
+            <div id="validThru2">
+              <label htmlFor="year">year</label>
+              <input
+                className={`exp ${valid}`}
+                id="year"
+                value={expiryYear}
+                placeholder="YY"
+                type="number"
+                style={{ border: validColor }}
+                onChange={(e) => {
+                  setExpiryYear(e.target.value.slice(0, 2));
+                  // if(valid) {
+                  //   setValidColor("2px solid red");
+                  // }
+                }}
+                onFocus={flipCard}
+              />
+            </div>
           </div>
 
-          <div className="validThru">
-            <label htmlFor="year">year</label>
-            <input
-              autoComplete="off"
-              className="valid"
-              id="year"
-              maxLength="2"
-              pattern="[0-9]*"
-              inputMode="numerical"
-              placeholder="YY"
-              type="text"
-              style={{ borderColor: validColor }}
-              onChange={(e) => {
-                setExpiryYear(e.target.value);
-              }}
-              onFocus={flipCard}
-            />
-          </div>
-
-          </div>
           <label htmlFor="cvcInput">CVC</label>
           <input
             type="number"

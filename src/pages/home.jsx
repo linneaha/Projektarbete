@@ -2,17 +2,19 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Card from "../components/MyCards";
 import { handleCards, removeCard } from "../redux/walletSlice";
+import { useState } from "react";
 
 const Home = () => {
   let dispatch = useDispatch();
   const { activeCards } = useSelector((state) => state.wallet);
   const { inactiveCards } = useSelector((state) => state.wallet);
+  const [errorMessage, setErrorMessage] = useState("");
 
   var timer;
   return (
     <div>
       <h1>E-Wallet</h1>
-      <p id="active">Active card</p>
+      <p className="small">Active card</p>
       <div id="wrapper">
         <div id="container">
           <div>
@@ -39,16 +41,17 @@ const Home = () => {
             </div>
           ))}
         </div>
-        <p id="error"></p>
+        <div id="error">
+          <p>{errorMessage}</p>
+        </div>
       </div>
       <Link
         to="/addcard"
         onClick={(e) => {
           if (inactiveCards.length >= 3) {
-            document.querySelector("#error").textContent =
-              "You have to many cards! Please remove one to add another";
+            setErrorMessage("You have to many cards remove one to add another!");
             setTimeout(() => {
-              document.querySelector("#error").textContent = "";
+              setErrorMessage("");
             }, 3000);
             e.preventDefault();
           }

@@ -16,11 +16,6 @@
   --gray2: #0e0244;
 }
 
-html,
-body,
-.main-container {
-  height: 100%;
-}
 
 html {
   font-size: 62, 5%;
@@ -53,19 +48,18 @@ html {
   border-radius: 20px;
   box-shadow: -15px 20px 20px rgba(22, 4, 74, 0.15);
   background: #afafaf;
-  /* background-image: linear-gradient(43deg, #dce775, #9ccc65, #4caf50, #00897b); */
 }
 
 .handelsbanken {
-  background-image: linear-gradient(43deg, #769bac, #4e5f62, #f2fdff, #e6fcff);
+  background-image: linear-gradient(43deg, #508eac, #39717a, #8ca7ad, #9fb4b6);
 }
 
 .swedbank {
   background: linear-gradient(
-    40deg,
+    43deg,
     #f26822,
     #fdb731,
-    #fde3ae,
+    #f3cf86,
     #fdb731,
     #f26822
   );
@@ -99,6 +93,10 @@ html {
 
 .card__front {
   padding: 0 2rem;
+}
+
+.card-front:hover {
+  margin-top: -230px;
 }
 
 .card-logo {
