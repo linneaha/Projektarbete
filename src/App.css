@@ -155,4 +155,19 @@ button:active {
   opacity: 0.5;
 }
 
+.exp {
+  display: block;
+  width: 140px;
+  margin-left: 15px;
+  margin-bottom: 15px;
+  /* align-items: stretch; */
+}
+
+.validThru {
+  display: inline-block;
+}
+
+/* .space {
+  height: 20px;
+} */
 
