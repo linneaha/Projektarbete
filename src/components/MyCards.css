@@ -137,8 +137,8 @@ html {
   display: flex;
   justify-content: space-between;
   text-shadow: 0 2px 1px  rgba(6, 1, 49, 0.333);;
-
   margin-top: 72px;
+  min-height: 25px;
 }
 
 .number-group,

@@ -64,7 +64,7 @@ const AddCard = () => {
 
   return (
     <div className="App">
-      {/* <h1>Adding new card</h1> */}
+      <h1>Adding new card</h1>
       <p id="active">new card</p>
       <Card
         cardNumber={cardNumber}

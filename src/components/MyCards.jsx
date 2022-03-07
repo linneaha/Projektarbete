@@ -58,7 +58,7 @@ const Card = ({ name, cardNumber, expiryMonth, expiryYear, cvc, bank }) => {
           <div className="card__back">
             <div className="card__stripe"></div>
             <div className="card__signature">
-              <span className="card_cvv">CVV</span>
+              <span className="card_cvv">CVC</span>
               <span className="card__cvv-number">{cvc}</span>
             </div>
           </div>
