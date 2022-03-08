@@ -39,7 +39,7 @@ const AddCard = () => {
       setValidColor("1px solid #ced4da");
     } else if (!valid && expiryMonth !== null && input >= 0) {
       setValidColor("2px solid green");
-    } else if (valid === true && expiryMonth !== null && input > 0) {
+    } else if (valid && expiryMonth !== null && input >= 0) {
       setValidColor("2px solid red");
     }
   }, [valid, expiryMonth]);
