@@ -8,6 +8,7 @@ import Card from "../components/MyCards";
 const AddCard = () => {
   let dispatch = useDispatch();
   const history = useHistory();
+
   const { cardHolderName } = useSelector((state) => state.wallet);
 
   const [cardNumber, setCardNumber] = useState("");
@@ -22,8 +23,7 @@ const AddCard = () => {
     "https://vandergragt.eu/images/mastercard.png"
   );
   const [cardNumberColor, setCardNumberColor] = useState("");
-  const [validColor, setValidColor] = useState("2px solid black");
-  const [validator,setValidator] = useState(1)
+  const [validColor, setValidColor] = useState("");
 
   let newDate = new Date();
   let currentMonth = newDate.getMonth() + 1;
@@ -32,23 +32,20 @@ const AddCard = () => {
   const val2 = currentYear * 10 + currentMonth;
   const result = val1 - val2;
   const valid = result < 0;
-  console.log(expiryMonth)
 
   useEffect(() => {
-    if (validator===1) {
-      setValidColor("1px solid black");
-      setValidator(0)
-    }
-    if (!valid  && expiryMonth !==null) {
+    let input = document.querySelector("#year").value;
+    if (input === null) {
+      setValidColor("1px solid #ced4da");
+    } else if (!valid && expiryMonth !== null && input >= 0) {
       setValidColor("2px solid green");
-    } 
-    if (valid && validator===0){
+    } else if (valid === true && expiryMonth !== null && input > 0) {
       setValidColor("2px solid red");
     }
   }, [valid, expiryMonth]);
 
   const addCard = () => {
-    if (cardNumber.toString().length === 19 && !valid && expiryMonth !==null) {
+    if (cardNumber.toString().length === 19 && !valid && expiryMonth !== null) {
       let newCard = {
         cardNumber: cardNumber,
         name: cardHolderName,
@@ -133,9 +130,6 @@ const AddCard = () => {
                 defaultValue={"MM"}
                 onChange={(e) => {
                   setExpiryMonth(e.target.value);
-                  // if(valid) {
-                  //   setValidColor("2px solid red");
-                  // }
                 }}
                 onFocus={flipCard}
                 style={{ border: validColor }}
@@ -169,9 +163,6 @@ const AddCard = () => {
                 style={{ border: validColor }}
                 onChange={(e) => {
                   setExpiryYear(e.target.value.slice(0, 2));
-                  // if(valid) {
-                  //   setValidColor("2px solid red");
-                  // }
                 }}
                 onFocus={flipCard}
               />

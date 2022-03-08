@@ -1,13 +1,13 @@
-import "./App.css"
+import "./App.css";
 import { Switch, Route } from "react-router-dom";
-import { Home } from "./pages/home"
+import { Home } from "./pages/home";
 import { AddCard } from "./pages/addCard";
 import { useDispatch } from "react-redux";
 import { getUser } from "./redux/walletSlice";
 import { useEffect } from "react";
 
 function App() {
-let dispatch = useDispatch();
+  let dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getUser());
