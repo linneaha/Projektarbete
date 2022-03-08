@@ -35,12 +35,12 @@ const AddCard = () => {
 
   useEffect(() => {
     let input = document.querySelector("#year").value;
-    if (input === null) {
-      setValidColor("1px solid #ced4da");
-    } else if (!valid && expiryMonth !== null && input >= 0) {
+    if (!valid && expiryMonth !== null && input >= 0) {
       setValidColor("2px solid green");
     } else if (valid && expiryMonth !== null && input >= 0) {
       setValidColor("2px solid red");
+    } else {
+      setValidColor("1px solid #ced4da");
     }
   }, [valid, expiryMonth]);
 
