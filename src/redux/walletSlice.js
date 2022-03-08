@@ -1,11 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-export const getUser = createAsyncThunk("wallet/getUser",
-  async () => {
-    return fetch("https://randomuser.me/api/").then((response) =>
-      response.json()
-    );
-  });
+export const getUser = createAsyncThunk("wallet/getUser", async () => {
+  return fetch("https://randomuser.me/api/").then((response) =>
+    response.json()
+  );
+});
 
 const walletSlice = createSlice({
   name: "wallet",

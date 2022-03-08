@@ -1,7 +1,16 @@
 import { useEffect } from "react";
 import "./MyCards.css";
 
-const Card = ({ name, cardNumber, expiryMonth, expiryYear, cvc, bank, vendor, logo }) => {
+const Card = ({
+  name,
+  cardNumber,
+  expiryMonth,
+  expiryYear,
+  cvc,
+  bank,
+  vendor,
+  logo,
+}) => {
   useEffect(() => {
     const card = document.querySelector(".card");
     card.addEventListener("click", () => {
@@ -16,21 +25,13 @@ const Card = ({ name, cardNumber, expiryMonth, expiryYear, cvc, bank, vendor, lo
         <div className={`card ${bank}`}>
           {/* card front */}
           <div className="card__front">
-            <img
-              className="card-logo"
-              src={`${logo}`}
-              alt=""
-            />
+            <img className="card-logo" src={`${logo}`} alt="" />
             <img
               src="https://img.icons8.com/plasticine/100/000000/sim-card-chip.png"
               className="chip"
               alt=""
             />
-            <img
-              src={`${vendor}`}
-              className="master-card"
-              alt=""
-            />
+            <img src={`${vendor}`} className="master-card" alt="" />
             <img
               src="https://vandergragt.eu/images/NFC.png"
               className="NFC"

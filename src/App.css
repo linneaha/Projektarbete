@@ -45,7 +45,7 @@ label {
 
 #validThru2 {
   display: inline-block;
-  vertical-align:top;
+  vertical-align: top;
 }
 
 #container {
@@ -57,11 +57,11 @@ label {
 }
 
 #wrapper {
-  min-height: 79vh;
+  min-height: 665px;
 }
 
 #inputWrapper {
-  min-height: 56vh;
+  min-height: 483px;
   margin-top: 40px;
   margin-bottom: 10px;
 }
@@ -76,11 +76,15 @@ h1 {
 
 #error {
   display: inline;
+  margin: 0 auto;
 }
 
 #error p {
   font-size: 14px;
+  font-weight: bold;
   padding-top: 20px;
+  max-width: 320px;
+  margin: 0 auto;
 }
 
 .small {
