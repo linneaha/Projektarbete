@@ -23,6 +23,7 @@ const AddCard = () => {
   );
   const [cardNumberColor, setCardNumberColor] = useState("");
   const [validColor, setValidColor] = useState("2px solid black");
+  const [validator,setValidator] = useState(1)
 
   let newDate = new Date();
   let currentMonth = newDate.getMonth() + 1;
@@ -34,9 +35,14 @@ const AddCard = () => {
   console.log(expiryMonth)
 
   useEffect(() => {
+    if (validator===1) {
+      setValidColor("1px solid black");
+      setValidator(0)
+    }
     if (!valid  && expiryMonth !==null) {
       setValidColor("2px solid green");
-    } else {
+    } 
+    if (valid && validator===0){
       setValidColor("2px solid red");
     }
   }, [valid, expiryMonth]);
