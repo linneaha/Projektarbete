@@ -1,7 +1,7 @@
 import "./App.css";
 import { Switch, Route } from "react-router-dom";
-import { Home } from "./pages/home";
-import { AddCard } from "./pages/addCard";
+import { Home } from "./pages/Home";
+import { AddCard } from "./pages/AddCard";
 import { useDispatch } from "react-redux";
 import { getUser } from "./redux/walletSlice";
 import { useEffect } from "react";

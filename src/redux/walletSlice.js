@@ -33,13 +33,9 @@ const walletSlice = createSlice({
         .map((card) => card.cardNumber)
         .indexOf(action.payload.cardNumber);
 
-      state.inactiveCards.splice(index, 0, state.activeCards[0]);
+      state.inactiveCards.splice(index, 1, state.activeCards[0]);
 
       state.activeCards = [action.payload];
-
-      state.inactiveCards = state.inactiveCards.filter(
-        (card) => card.cardNumber !== action.payload.cardNumber
-      );
     },
     removeCard: (state, action) => {
       state.inactiveCards = state.inactiveCards.filter(
@@ -52,10 +48,13 @@ const walletSlice = createSlice({
       console.log("Fetching data");
     },
     [getUser.fulfilled]: (state, action) => {
+      console.log("Data fetched");
+      
       state.activeCards[0].name =
         action.payload.results[0].name.first.toUpperCase() +
         " " +
         action.payload.results[0].name.last.toUpperCase();
+        
       state.cardHolderName =
         action.payload.results[0].name.first.toUpperCase() +
         " " +
