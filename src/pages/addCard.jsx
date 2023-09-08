@@ -4,6 +4,13 @@ import { addCards } from "../redux/walletSlice";
 import { useHistory } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Card from "../components/MyCards";
+import swedbankImage from "../images/swedbank.png";
+import handelsbankenImage from "../images/handelsbanken.png";
+import icaImage from "../images/ICA.png";
+import mastercardImage from "../images/mastercardlogo.png";
+import nordeaImage from "../images/nordea.png";
+import visaCardImage from "../images/visacardlogo.png"
+
 
 const AddCard = () => {
   let dispatch = useDispatch();
@@ -17,10 +24,10 @@ const AddCard = () => {
   const [cvc, setCvc] = useState("");
   const [bank, setBank] = useState("swedbank");
   const [logo, setLogo] = useState(
-    "https://vandergragt.eu/images/swedbank.png"
+    swedbankImage
   );
   const [vendor, setVendor] = useState(
-    "https://vandergragt.eu/images/mastercard.png"
+    mastercardImage
   );
   const [cardNumberColor, setCardNumberColor] = useState("");
   const [validColor, setValidColor] = useState("");
@@ -186,21 +193,21 @@ const AddCard = () => {
             required
             onChange={(e) => {
               if (e.target.value === "swedbank") {
-                setLogo("https://vandergragt.eu/images/swedbank.png");
-                setVendor("https://vandergragt.eu/images/mastercard.png");
+                setLogo(swedbankImage);
+                setVendor(mastercardImage);
               } else if (e.target.value === "icabank") {
-                setLogo("https://vandergragt.eu/images/ICA.png");
+                setLogo(icaImage);
                 setVendor(
-                  "https://vandergragt.eu/images/kispng-credit-card-viisa-logo.png"
+                  visaCardImage
                 );
               } else if (e.target.value === "nordea") {
-                setLogo("https://vandergragt.eu/images/nordea.png");
+                setLogo(nordeaImage);
                 setVendor(
-                  "https://vandergragt.eu/images/kispng-credit-card-viisa-logo.png"
+                  visaCardImage
                 );
               } else if (e.target.value === "handelsbanken") {
-                setLogo("https://vandergragt.eu/images/handelsbbanken.png");
-                setVendor("https://vandergragt.eu/images/mastercard.png");
+                setLogo(handelsbankenImage);
+                setVendor(mastercardImage);
               }
               setBank(e.target.value);
             }}
