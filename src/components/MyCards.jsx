@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 import "./MyCards.css";
+import nfc from "../images/nfc.png"
+import simcardchipImage from "../images/sim-card-chip.png"
 
 const Card = ({
   name,
@@ -27,13 +29,13 @@ const Card = ({
           <div className="card__front">
             <img className="card-logo" src={`${logo}`} alt="" />
             <img
-              src="https://img.icons8.com/plasticine/100/000000/sim-card-chip.png"
+              src={simcardchipImage}
               className="chip"
               alt=""
             />
             <img src={`${vendor}`} className="master-card" alt="" />
             <img
-              src="https://vandergragt.eu/images/NFC.png"
+              src={nfc}
               className="NFC"
               alt=""
             />

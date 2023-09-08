@@ -20,6 +20,7 @@ html {
   font-size: 62, 5%;
 }
 
+
 /* main content */
 
 .main-container {
@@ -123,7 +124,7 @@ html {
   height: 3rem;
   margin-top: 10px;
   position: absolute;
-  left: 62px;
+  left: 70px;
   color: #fff;
 }
 .card-logo .chip {

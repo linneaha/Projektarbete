@@ -36,3 +36,4 @@ För att få Väl Godkänt ska du:
 ●  Det ska gå att ta bort kort från listan. Det ska dock INTE vara möjligt att ta bort ett kort som är aktivt.
 ●  Fälten när en kort läggs till ska valideras så du i fältet kortnummer enbart kan mata in siffror, och det måste vara 16 siffror. Fältet för namn ska inte gå att fylla i, och förhandsvisningen ska visa användaren som hämtats från API:et.
 ●  Inga större buggar.
+# cardwithredux
